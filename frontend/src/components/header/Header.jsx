@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import styled from "styled-components";
 import Profile from "./Profile";
+import WalletConnection from "./WalletConnection";
 
 const StyledDiv = styled.div`
     margin-left: 50px;
@@ -12,13 +13,15 @@ const StyledDiv = styled.div`
 `
 
 const Header = () => {
-  return (
-    <StyledDiv>
-        <Logo/>
-        <SearchBar/>
-        <Profile/>
-    </StyledDiv>
-  );
+    const [isLogged, setIsLogged] = React.useState(false);
+
+    return (
+        <StyledDiv>
+            <Logo/>
+            <SearchBar/>
+            {isLogged?<Profile/>:<WalletConnection/>}
+        </StyledDiv>
+    );
 };
 
 

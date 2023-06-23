@@ -12,6 +12,12 @@ const StyledInput = styled.input`
   box-sizing: border-box;
   /* outline: none; */
   border-radius: 5px;
+  &:hover{
+    background: #fbfafa;
+    background-image: url(search.png);
+    background-position: 5px center;
+    background-repeat: no-repeat;
+  }
 `;
 
 const SearchBar = () => {
