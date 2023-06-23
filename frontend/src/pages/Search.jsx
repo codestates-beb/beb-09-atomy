@@ -1,7 +1,8 @@
 import React from "react";
+import Container from "../components/container/Container";
 
 const Search = () => {
-  return <div>Search</div>;
+  return <Container>Search</Container>;
 };
 
 export default Search;
