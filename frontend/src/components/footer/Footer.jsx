@@ -117,12 +117,4 @@ const Footer = () => (
   </FooterContainer>
 );
 
-const App = () => (
-  <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-    <MainContent>
-    </MainContent>
-    <Footer />
-  </div>
-);
-
-export default App;
+export default Footer;
