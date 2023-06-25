@@ -11,7 +11,6 @@ const loggerMiddleware = {
         hostname: req.hostname,
         url: req.url,
         duration: duration.toString() + "ms",
-        code: res.statusCode,
       });
     };
   },
