@@ -1,5 +1,5 @@
-const loggerMiddleware = {
-  new: (logger) => {
+module.exports = {
+  requestLogger: (logger) => {
     return (req, res, next) => {
       let start = Date.now();
 
@@ -15,5 +15,3 @@ const loggerMiddleware = {
     };
   },
 };
-
-module.exports = loggerMiddleware;
