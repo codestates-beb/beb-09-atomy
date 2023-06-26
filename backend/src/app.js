@@ -1,26 +1,26 @@
 const express = require("express");
-const winston = require("winston");
+const cors = require("cors");
+
+const logger = require("./loaders/logger");
+const ethers = require("./loaders/ethers");
 const loggerMiddleware = require("./middlewares/logger");
 
 const app = express();
-const cors = require("cors");
 
-const logger = winston.createLogger({
-  format: winston.format.json(),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    // new winston.transports.File({ filename: "combined.log" }),
-  ],
-  defaultMeta: { service: "backend", timestamp: Date.now() },
-});
-
+app.use(loggerMiddleware.new(logger));
 app.use(cors());
 app.use(express.json());
-app.use(loggerMiddleware.new(logger));
 
 app.get("/healthcheck", (req, res) => {
   res.send("OK");
+});
+
+app.get("/getBalance/:address", async (req, res) => {
+  const { address } = req.params;
+
+  const balance = await ethers.getBalance(address);
+
+  res.send({ balance: balance.toString() });
 });
 
 app.listen(4000, () => {
