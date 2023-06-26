@@ -12,14 +12,12 @@ const StyledDiv = styled.div`
     justify-content: space-between;
 `
 
-const Header = () => {
-    const [isLogged, setIsLogged] = React.useState(false);
-
+const Header = ({web3, isLogged, setIsLogged}) => {
     return (
         <StyledDiv>
             <Logo/>
             <SearchBar/>
-            {isLogged?<Profile/>:<WalletConnection/>}
+            {isLogged?<Profile web3={web3}/>:<WalletConnection web3={web3} setIsLogged={setIsLogged}/>}
         </StyledDiv>
     );
 };
