@@ -13,11 +13,14 @@ const collectionSchema = new mongo.Schema({
   name: {
     type: String,
   },
+  symbol: {
+    type: String,
+  },
   description: {
     type: String,
   },
   owner: {
-    type: String,
+    type: Number,
   },
   image_url: {
     type: String,
@@ -30,6 +33,9 @@ const collectionSchema = new mongo.Schema({
   },
   total_volume: {
     type: Number,
+  },
+  created_date: {
+    type: Date,
   },
 });
 
