@@ -39,7 +39,7 @@ module.exports = {
   findRandom: async () => {
     return await model.aggregate([{ $sample: { size: 4 } }]);
   },
-  findOne: async (name) => {
+  findByName: async (name) => {
     return await model.findOne({ name });
   },
   insertOne: async (collection) => {
