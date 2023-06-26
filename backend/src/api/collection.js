@@ -1,8 +1,7 @@
 const express = require("express");
 
 class collectionController {
-  constructor(logger, collectionModel) {
-    this.logger = logger;
+  constructor(collectionModel) {
     this.collectionModel = collectionModel;
   }
 
@@ -17,33 +16,36 @@ class collectionController {
     return router;
   }
 
-  async dropNFT(req, res) {
-    const { collection_name } = req.params;
+  async dropNFT(req, res, next) {
+    try {
+      // TODO: Implement this
 
-    this.logger.info(`Dropping NFT from ${collection_name}`);
-
-    res.send("Not implemented");
+      res.send("Not implemented");
+    } catch (err) {
+      res.status(500);
+      next(err);
+    }
   }
 
-  async randomCollections(req, res) {
+  async randomCollections(req, res, next) {
     try {
       const collections = await this.collectionModel.findRandom();
       res.send(collections);
     } catch (err) {
-      this.logger.error(err);
-      res.status(500).send("Internal Server Error");
+      res.status(500);
+      next(err);
     }
   }
 
-  async getCollectionByName(req, res) {
+  async getCollectionByName(req, res, next) {
     try {
       const { collection_name } = req.params;
       const name = collection_name.toLowerCase().replace(/-/g, " ");
       const collection = await this.collectionModel.findByName(name);
       res.send(collection);
     } catch (err) {
-      this.logger.error(err);
-      res.status(500).send("Internal Server Error");
+      res.status(500);
+      next(err);
     }
   }
 }
