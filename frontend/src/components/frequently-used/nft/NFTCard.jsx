@@ -13,8 +13,8 @@ const Container2 = styled.div`
   display: flex;
   align-items: flex-start;
   width: 110%;
-  margin-top: 40px;
-  padding-right: 16%;
+  margin-top: 6%;
+  padding-left: 1%;
 `;
 
 const Image = styled.img`
@@ -23,25 +23,25 @@ const Image = styled.img`
   object-fit: cover;
   border-radius: 30px;
   cursor: pointer;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 1.0);
 `;
 
 const NFTInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
 `;
 
 const NFTTitleContainer = styled.div`
-  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
+  margin-top: -95px;
   margin-bottom: 10px;
 `;
 
 const Title = styled.h2`
-  font-size: 30px;
-  color: #000;
+  font-size: ${({ size }) => size};
+  color: ${({ color }) => color};
+  font-weight: bold;
 `;
 
 const Price = styled.div`
@@ -53,20 +53,21 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  margin-top: 10px;
+  justify-content: center;
 `;
 
 const Button = styled.button`
-  padding: 10px 20px;
+  padding: 5%;
   color: #fff;
   font-size: 16px;
-  border: 2px solid #000; 
+  font-weight: bold;
+  border: 2px solid #3086d5;
   cursor: pointer;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  width: 200px;
+  justify-content: center;
+  width: 247px;
   border-radius: 10px;
   ${({ isPrimary }) =>
     isPrimary
@@ -75,8 +76,9 @@ const Button = styled.button`
     `
       : `
       background-color: #3086d5;
-      margin-left: 50px;
+      margin-left: 30px;
     `}
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 `;
 
 const CartIcon = styled(IoMdCart)`
@@ -113,6 +115,7 @@ const Accordion = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid #616161;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 `;
 
 const AccordionTitle = styled.h3`
@@ -159,6 +162,24 @@ const ImagePopup = styled.img`
   object-fit: contain;
 `;
 
+const TextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const CustomText = styled.p`
+  margin: 0;
+  font-size: ${({ size }) => size};
+  color: ${({ color }) => color};
+  font-weight: bold;
+  margin-right: 5px;
+`;
+
+const LightningIcon = styled.span`
+  font-size: 16px;
+`;
+
 const AccordionItem = ({ title, isOpen, onClick }) => (
   <Accordion onClick={onClick}>
     <AccordionTitle>
@@ -176,6 +197,7 @@ const AccordionItem = ({ title, isOpen, onClick }) => (
 
 const NFTCard = () => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State for the image popup
 
   const handleAccordionToggle = (index) => {
     setAccordionState((prevState) => {
@@ -183,6 +205,14 @@ const NFTCard = () => {
       newState[index] = !newState[index];
       return newState;
     });
+  };
+
+  const handleImageClick = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   const nft = {
@@ -194,18 +224,22 @@ const NFTCard = () => {
   return (
     <Container1>
       <Container2>
-        <Image src={nft.image} alt={nft.title} />
+        <Image src={nft.image} alt={nft.title} onClick={handleImageClick} />
         <AccordionCard>
           <NFTInfoContainer>
             <NFTTitleContainer>
-              <Title>Utility Wen</Title>
-              <Title>{nft.title}</Title>
-              <Title>Owned by A78E0C</Title>
+              <Title size="28px" color="#3086d5">Utility Wen</Title>
+              <Title size="40px" color="#000">{nft.title}</Title>
+              <Title size="20px" color="#000">Owned by A78E0C</Title>
+              <TextWrapper>
+                <CustomText size="16px" color="#000">Ethereum</CustomText>
+                <LightningIcon>⚡️</LightningIcon>
+              </TextWrapper>
             </NFTTitleContainer>
             <ButtonContainer>
               <Button isPrimary>BUY BUTTON</Button>
               <Button>
-                <CartIcon size={16} />
+                <CartIcon size={24} />
               </Button>
             </ButtonContainer>
           </NFTInfoContainer>
@@ -245,6 +279,13 @@ const NFTCard = () => {
           </AccordionContainer>
         </AccordionCard>
       </Container2>
+      {isPopupOpen && (
+        <PopupOverlay onClick={handleClosePopup}>
+          <PopupContent>
+            <ImagePopup src={nft.image} alt={nft.title} />
+          </PopupContent>
+        </PopupOverlay>
+      )}
     </Container1>
   );
 };
