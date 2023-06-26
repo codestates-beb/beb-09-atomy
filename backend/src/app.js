@@ -3,6 +3,7 @@ const cors = require("cors");
 
 const logger = require("./loaders/logger");
 const ethers = require("./loaders/ethers");
+const mongo = require("./loaders/mongo");
 const loggerMiddleware = require("./middlewares/logger");
 
 const app = express();
@@ -10,6 +11,8 @@ const app = express();
 app.use(loggerMiddleware.new(logger));
 app.use(cors());
 app.use(express.json());
+
+const mongoClient = mongo.new();
 
 app.get("/healthcheck", (req, res) => {
   res.send("OK");
