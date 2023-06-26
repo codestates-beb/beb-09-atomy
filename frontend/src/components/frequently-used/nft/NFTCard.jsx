@@ -12,9 +12,9 @@ const Container1 = styled.div`
 const Container2 = styled.div`
   display: flex;
   align-items: flex-start;
-  width: 100%;
-  margin-top: 30px;
-  padding-right: 46%;
+  width: 110%;
+  margin-top: 40px;
+  padding-right: 16%;
 `;
 
 const Image = styled.img`
@@ -40,8 +40,8 @@ const NFTTitleContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 24px;
-  color: #333;
+  font-size: 30px;
+  color: #000;
 `;
 
 const Price = styled.div`
@@ -66,14 +66,16 @@ const Button = styled.button`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  width: 150px;
+  width: 200px;
+  border-radius: 10px;
   ${({ isPrimary }) =>
     isPrimary
       ? `
-      background-color: #1a4edc;
+      background-color: #3086d5;
     `
       : `
-      background-color: #4f4f4f;
+      background-color: #3086d5;
+      margin-left: 50px;
     `}
 `;
 
@@ -110,7 +112,7 @@ const Accordion = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  border: 3px solid #000; 
+  border: 2px solid #616161;
 `;
 
 const AccordionTitle = styled.h3`
@@ -157,24 +159,30 @@ const ImagePopup = styled.img`
   object-fit: contain;
 `;
 
+const AccordionItem = ({ title, isOpen, onClick }) => (
+  <Accordion onClick={onClick}>
+    <AccordionTitle>
+      {isOpen ? <IoIosArrowUp size={18} /> : <IoIosArrowDown size={18} />}
+      {title}
+    </AccordionTitle>
+    <AccordionContent isOpen={isOpen}>
+      <IoIosArrowUp size={18} />
+      {title}
+      <br />
+      Accordion Content
+    </AccordionContent>
+  </Accordion>
+);
+
 const NFTCard = () => {
-  const [isAccordionOpen, setIsAccordionOpen] = useState([false, false, false]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
 
   const handleAccordionToggle = (index) => {
-    setIsAccordionOpen((prevState) => {
+    setAccordionState((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];
       return newState;
     });
-  };
-
-  const handleImageClick = () => {
-    setIsPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
   };
 
   const nft = {
@@ -186,7 +194,7 @@ const NFTCard = () => {
   return (
     <Container1>
       <Container2>
-        <Image src={nft.image} alt={nft.title} onClick={handleImageClick} />
+        <Image src={nft.image} alt={nft.title} />
         <AccordionCard>
           <NFTInfoContainer>
             <NFTTitleContainer>
@@ -202,102 +210,41 @@ const NFTCard = () => {
             </ButtonContainer>
           </NFTInfoContainer>
           <AccordionContainer>
-            <Accordion onClick={() => handleAccordionToggle(0)}>
-              <AccordionTitle>
-                {isAccordionOpen[0] ? (
-                  <IoIosArrowUp size={18} />
-                ) : (
-                  <IoIosArrowDown size={18} />
-                )}
-                Price History
-              </AccordionTitle>
-              <AccordionContent isOpen={isAccordionOpen[0]}>
-                <IoIosArrowUp size={18} />
-                Price History
-                <br />
-                Accordion Content
-              </AccordionContent>
-            </Accordion>
-            <Accordion onClick={() => handleAccordionToggle(1)}>
-              <AccordionTitle>
-                {isAccordionOpen[1] ? (
-                  <IoIosArrowUp size={18} />
-                ) : (
-                  <IoIosArrowDown size={18} />
-                )}
-                Listings
-              </AccordionTitle>
-              <AccordionContent isOpen={isAccordionOpen[1]}>
-                <IoIosArrowUp size={18} />
-                Listings
-                <br />
-                Accordion Content
-              </AccordionContent>
-            </Accordion>
-            <Accordion onClick={() => handleAccordionToggle(2)}>
-              <AccordionTitle>
-                {isAccordionOpen[2] ? (
-                  <IoIosArrowUp size={18} />
-                ) : (
-                  <IoIosArrowDown size={18} />
-                )}
-                Offers
-              </AccordionTitle>
-              <AccordionContent isOpen={isAccordionOpen[2]}>
-                <IoIosArrowUp size={18} />
-                Offers
-                <br />
-                Accordion Content
-              </AccordionContent>
-            </Accordion>
+            <AccordionItem
+              title="Price History 1"
+              isOpen={accordionState[0]}
+              onClick={() => handleAccordionToggle(0)}
+            />
+            <AccordionItem
+              title="Price History 2"
+              isOpen={accordionState[1]}
+              onClick={() => handleAccordionToggle(1)}
+            />
+            <AccordionItem
+              title="Price History 3"
+              isOpen={accordionState[2]}
+              onClick={() => handleAccordionToggle(2)}
+            />
           </AccordionContainer>
         </AccordionCard>
       </Container2>
       <Container2>
         <AccordionCard>
           <AccordionContainer>
-            <Accordion onClick={() => handleAccordionToggle(0)}>
-              <AccordionTitle>
-                {isAccordionOpen[0] ? (
-                  <IoIosArrowUp size={18} />
-                ) : (
-                  <IoIosArrowDown size={18} />
-                )}
-                Description
-              </AccordionTitle>
-              <AccordionContent isOpen={isAccordionOpen[0]}>
-                <IoIosArrowUp size={18} />
-                Description
-                <br />
-                Accordion Content
-              </AccordionContent>
-            </Accordion>
-            <Accordion onClick={() => handleAccordionToggle(1)}>
-              <AccordionTitle>
-                {isAccordionOpen[1] ? (
-                  <IoIosArrowUp size={18} />
-                ) : (
-                  <IoIosArrowDown size={18} />
-                )}
-                Properties
-              </AccordionTitle>
-              <AccordionContent isOpen={isAccordionOpen[1]}>
-                <IoIosArrowUp size={18} />
-                Properties
-                <br />
-                Accordion Content
-              </AccordionContent>
-            </Accordion>
+            <AccordionItem
+              title="Description"
+              isOpen={accordionState[3]}
+              onClick={() => handleAccordionToggle(3)}
+            />
+            <div style={{ marginBottom: '20px' }} />
+            <AccordionItem
+              title="Description 2"
+              isOpen={accordionState[4]}
+              onClick={() => handleAccordionToggle(4)}
+            />
           </AccordionContainer>
         </AccordionCard>
       </Container2>
-      {isPopupOpen && (
-        <PopupOverlay onClick={handleClosePopup}>
-          <PopupContent>
-            <ImagePopup src={nft.image} alt={nft.title} />
-          </PopupContent>
-        </PopupOverlay>
-      )}
     </Container1>
   );
 };
