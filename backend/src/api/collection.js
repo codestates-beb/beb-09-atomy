@@ -1,6 +1,6 @@
 const express = require("express");
 
-class router {
+class collectionController {
   constructor(logger, collectionModel) {
     this.logger = logger;
     this.collectionModel = collectionModel;
@@ -48,4 +48,4 @@ class router {
   }
 }
 
-module.exports = router;
+module.exports = collectionController;

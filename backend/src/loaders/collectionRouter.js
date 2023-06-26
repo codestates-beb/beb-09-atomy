@@ -1,5 +1,5 @@
 const logger = require("../loaders/logger");
 const model = require("../models/collection");
-const router = require("../api/collection");
+const collectionController = require("../api/collection");
 
-module.exports = new router(logger, model).getRouter();
+module.exports = new collectionController(logger, model).getRouter();
