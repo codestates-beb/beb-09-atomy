@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledInput = styled.input`
+const SearchbarInput = styled.input`
   background-image: url(search.png);
   background-position: 5px center;
   background-repeat: no-repeat;
@@ -23,7 +23,7 @@ const StyledInput = styled.input`
 const SearchBar = () => {
   return (
     <form>
-      <StyledInput
+      <SearchbarInput
         type="text"
         placeholder="Search NFT"
         className="search_bar"
