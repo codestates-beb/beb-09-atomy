@@ -16,6 +16,9 @@ const collectionSchema = new mongo.Schema({
   symbol: {
     type: String,
   },
+  slug: {
+    type: String,
+  },
   description: {
     type: String,
   },
@@ -42,11 +45,11 @@ const collectionSchema = new mongo.Schema({
 const model = mongo.model("Collection", collectionSchema);
 
 module.exports = {
-  findRandom: async () => {
-    return await model.aggregate([{ $sample: { size: 4 } }]);
+  findRandom: async (size) => {
+    return await model.aggregate([{ $sample: { size: size } }]);
   },
-  findByName: async (name) => {
-    return await model.findOne({ name });
+  findBySlug: async (slug) => {
+    return await model.findOne({ slug });
   },
   insertOne: async (collection) => {
     return await model.create(collection);

@@ -8,10 +8,7 @@ class collectionController {
   getRouter() {
     const router = express.Router();
     router.get("/collections", this.randomCollections.bind(this));
-    router.get(
-      "/collections/:collection_name",
-      this.getCollectionByName.bind(this)
-    );
+    router.get("/collections/:slug", this.getCollectionBySlug.bind(this));
     router.post("/collections/:collection_name/drop", this.dropNFT.bind(this));
     return router;
   }
@@ -29,7 +26,12 @@ class collectionController {
 
   async randomCollections(req, res, next) {
     try {
-      const collections = await this.collectionModel.findRandom();
+      const { size } = req.query;
+      let parsedSize = parseInt(size);
+      if (isNaN(parsedSize) || parsedSize < 1 || parsedSize > 200) {
+        parsedSize = 100;
+      }
+      const collections = await this.collectionModel.findRandom(parsedSize);
       res.send(collections);
     } catch (err) {
       res.status(500);
@@ -37,11 +39,10 @@ class collectionController {
     }
   }
 
-  async getCollectionByName(req, res, next) {
+  async getCollectionBySlug(req, res, next) {
     try {
-      const { collection_name } = req.params;
-      const name = collection_name.toLowerCase().replace(/-/g, " ");
-      const collection = await this.collectionModel.findByName(name);
+      const { slug } = req.params;
+      const collection = await this.collectionModel.findBySlug(slug);
       res.send(collection);
     } catch (err) {
       res.status(500);
