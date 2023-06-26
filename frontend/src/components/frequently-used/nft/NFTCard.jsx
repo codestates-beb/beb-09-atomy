@@ -13,8 +13,8 @@ const Container2 = styled.div`
   display: flex;
   align-items: flex-start;
   width: 110%;
-  margin-top: 6%;
-  padding-left: 1%;
+  margin-top: 40px;
+  padding-right: 16%;
 `;
 
 const Image = styled.img`
@@ -39,9 +39,8 @@ const NFTTitleContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: ${({ size }) => size};
-  color: ${({ color }) => color};
-  font-weight: bold;
+  font-size: 30px;
+  color: #000;
 `;
 
 const Price = styled.div`
@@ -66,8 +65,7 @@ const Button = styled.button`
   margin-bottom: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 247px;
+  width: 200px;
   border-radius: 10px;
   ${({ isPrimary }) =>
     isPrimary
@@ -76,7 +74,7 @@ const Button = styled.button`
     `
       : `
       background-color: #3086d5;
-      margin-left: 30px;
+      margin-left: 50px;
     `}
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 `;
@@ -115,7 +113,6 @@ const Accordion = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid #616161;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 `;
 
 const AccordionTitle = styled.h3`
@@ -162,24 +159,6 @@ const ImagePopup = styled.img`
   object-fit: contain;
 `;
 
-const TextWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CustomText = styled.p`
-  margin: 0;
-  font-size: ${({ size }) => size};
-  color: ${({ color }) => color};
-  font-weight: bold;
-  margin-right: 5px;
-`;
-
-const LightningIcon = styled.span`
-  font-size: 16px;
-`;
-
 const AccordionItem = ({ title, isOpen, onClick }) => (
   <Accordion onClick={onClick}>
     <AccordionTitle>
@@ -197,7 +176,6 @@ const AccordionItem = ({ title, isOpen, onClick }) => (
 
 const NFTCard = () => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // State for the image popup
 
   const handleAccordionToggle = (index) => {
     setAccordionState((prevState) => {
@@ -205,14 +183,6 @@ const NFTCard = () => {
       newState[index] = !newState[index];
       return newState;
     });
-  };
-
-  const handleImageClick = () => {
-    setIsPopupOpen(true);
-  };
-
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
   };
 
   const nft = {
@@ -224,7 +194,7 @@ const NFTCard = () => {
   return (
     <Container1>
       <Container2>
-        <Image src={nft.image} alt={nft.title} onClick={handleImageClick} />
+        <Image src={nft.image} alt={nft.title} />
         <AccordionCard>
           <NFTInfoContainer>
             <NFTTitleContainer>
@@ -279,13 +249,6 @@ const NFTCard = () => {
           </AccordionContainer>
         </AccordionCard>
       </Container2>
-      {isPopupOpen && (
-        <PopupOverlay onClick={handleClosePopup}>
-          <PopupContent>
-            <ImagePopup src={nft.image} alt={nft.title} />
-          </PopupContent>
-        </PopupOverlay>
-      )}
     </Container1>
   );
 };
