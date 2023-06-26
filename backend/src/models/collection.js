@@ -28,6 +28,21 @@ const collectionSchema = new mongo.Schema({
   total_supply: {
     type: Number,
   },
+  total_volume: {
+    type: Number,
+  },
 });
 
-module.exports = mongo.model("Collection", collectionSchema);
+const model = mongo.model("Collection", collectionSchema);
+
+module.exports = {
+  findRandom: async () => {
+    return await model.aggregate([{ $sample: { size: 4 } }]);
+  },
+  findOne: async (name) => {
+    return await model.findOne({ name });
+  },
+  insertOne: async (collection) => {
+    return await model.create(collection);
+  },
+};

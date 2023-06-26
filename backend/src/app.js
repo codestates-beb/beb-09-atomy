@@ -6,13 +6,13 @@ const ethers = require("./loaders/ethers");
 const mongo = require("./loaders/mongo");
 const loggerMiddleware = require("./middlewares/logger");
 
+const collectionModel = require("./models/collection");
+
 const app = express();
 
 app.use(loggerMiddleware.new(logger));
 app.use(cors());
 app.use(express.json());
-
-const mongoClient = mongo.new();
 
 app.get("/healthcheck", (req, res) => {
   res.send("OK");
@@ -24,6 +24,12 @@ app.get("/getBalance/:address", async (req, res) => {
   const balance = await ethers.getBalance(address);
 
   res.send({ balance: balance.toString() });
+});
+
+app.get("/collections", async (req, res) => {
+  const collections = await collectionModel.findRandom();
+
+  res.send(collections);
 });
 
 app.listen(4000, () => {
