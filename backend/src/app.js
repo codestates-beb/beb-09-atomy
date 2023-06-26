@@ -15,9 +15,11 @@ app.use(express.json());
 
 const healthcheckRouter = require("./loaders/healthcheckRouter");
 const collectionRouter = require("./loaders/collectionRouter");
+const userRouter = require("./loaders/userRouter");
 
 app.use("/api/v1", healthcheckRouter);
 app.use("/api/v1", collectionRouter);
+app.use("/api/v1", userRouter);
 
 app.use(errorMiddleware.pageNotFound);
 app.use(errorMiddleware.handleError(logger));
