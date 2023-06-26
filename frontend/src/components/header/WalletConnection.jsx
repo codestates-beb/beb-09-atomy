@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from 'axios';
 
 const StyledButton = styled.button`
+  margin-right:40px;
   background:inherit;
   border:none;
   box-shadow: none;
@@ -20,8 +21,8 @@ const WalletConnection = ({web3, setIsLogged}) => {
         web3.eth.requestAccounts()
         .then((accounts)=>{
             setIsLogged(true);
-            const account = accounts[0]
-            axios.post("http://127.0.0.1:4000/login", {account})
+            // const account = accounts[0]
+            // axios.post("http://127.0.0.1:4000/login", {account})
 
         })
         .catch((error)=>{

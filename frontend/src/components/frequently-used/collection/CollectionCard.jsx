@@ -1,29 +1,20 @@
-import React from "react";
-
-// import { useSelector } from 'react-redux';
+import React from 'react'
 import styled from 'styled-components';
-// import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export const Boards = styled.div`
-  margin-top: 300px;
-  margin-left: 300px;
-  display:grid;
-  grid-template-columns: 0.4fr 0.4fr 0.4fr;
-  row-gap: 40px;
-`
-const Board = styled.div`
+const Card = styled.div`
   cursor: pointer;
   overflow: hidden;
   text-align: center;
-  height:450px;
-  width: 350px;
+  height:300px;
+  width: 250px;
   border-radius: 10%;
   /* background-color: aquamarine; */
   box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
   position: relative;
   &:hover {
-    animation: example 0.2s forwards;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.4);
+    animation: example 0.2s forwards;
     @keyframes example {
       from {
         top:0px;
@@ -34,24 +25,44 @@ const Board = styled.div`
     }
   }
 
-`
+`;
 
-const CollectionCard = ({image, title, content, path}) =>{
-//   const nav = useNavigate();
+const Title = styled.div`
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: "Hi Melody cursive";
+`;
 
-  return(
-    //onClick={()=>{nav(path)}}
-    <Board> 
-      <img src={image} width="100%" height="40%" alt="" />
-      <div style={{marginTop:"10px",fontSize:"20px",fontFamily: "Hi Melody cursive"}}>
-        <span>{title}</span>
-      </div>
-      <div style={{padding:"10px 30px", fontSize:"15px", height:"110px", overflow:"hidden"}}>
-        <span>{content}</span>
-      </div>
-    </Board>
+const Owner = styled.div`
+    margin-left: 20px;
+    display:float;
+`;
+
+const SubInfo = styled.div`
+    padding: 10px 30px;
+    position:relative;
+    top:15px;
+    font-size: 15px;;
+    overflow: hidden;
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+
+`;
+
+const CollectionCard = ({image, title, owner, NFTQuantity, volume, path}) => {
+  const nav = useNavigate();
+  return (
+    <Card onClick={()=>{nav(path)}}> 
+        <img src={image} width="100%" height="60%" alt="" />
+        <Title>{title}</Title>
+        <Owner>{owner}</Owner>
+        <SubInfo>
+            <div>{NFTQuantity}</div> 
+            <div>{volume}</div> 
+        </SubInfo>
+    </Card>
   );
 }
 
-
-export default CollectionCard;
+export default CollectionCard
