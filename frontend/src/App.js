@@ -22,13 +22,13 @@ const App = () => {
     web3Init(); //web3 인스턴스가 변동이 있을때마다 초기화.
   }, [web3]);
 
-  useEffect(() => {
-    handleSetAddress(); // address가 변할때마다 재설정 작업.
-  }, [address]);
+  //   useEffect(() => {
+  //     handleSetAddress(); // address가 변할때마다 재설정 작업.
+  //   }, [address]);
 
-  useEffect(() => {
-    reqeustAccessToken(); // access토큰이 변할때마다 재설정 작업.
-  }, [accessToken]);
+  //   useEffect(() => {
+  //     // reqeustAccessToken(); // access토큰이 변할때마다 재설정 작업.
+  //   }, [accessToken]);
 
   const handleSetAddress = () => {
     if (web3 !== "") {
@@ -38,11 +38,15 @@ const App = () => {
     }
   };
 
-  const reqeustAccessToken = (address) => {
-    // axios.post("http://127.0.0.1:4000/login", { address }).then((response) => {
-    //   setAccessToken(response.data.accessToken);
-    //   setAddress(address);
-    // });
+  const requestAccessToken = (address) => {
+    //로그인 진행 시 address를 기반으로 서버에 JWT access Token을 받아온다.
+    axios
+      .post("http://127.0.0.1:4000/api/v1/user/login", { address })
+      .then((response) => {
+        console.log(response);
+        //   setAccessToken(response.data.accessToken);
+        //   setAddress(address);
+      });
   };
 
   const web3Init = () => {
@@ -74,11 +78,11 @@ const App = () => {
         web3={web3}
         isLogged={isLogged}
         setIsLogged={setIsLogged}
-        reqeustAccessToken={reqeustAccessToken}
+        requestAccessToken={requestAccessToken}
       />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/search/:keyword" element={<Search />} />
+        {/* <Route path="/search/:keyword" element={<Search />} /> */}
         <Route path="/collection/:id" element={<CollectionInfo />} />
         <Route path="/nft/:id" element={<NFTInfo />} />
         <Route path="/test" element={<Test />} />
