@@ -13,7 +13,7 @@ const Container2 = styled.div`
   display: flex;
   align-items: flex-start;
   width: 110%;
-  margin-top: 6%;
+  margin-top: 13%;
   padding-left: 1%;
 `;
 
@@ -125,6 +125,11 @@ const AccordionTitle = styled.h3`
   font-size: 18px;
   margin-bottom: 5px;
   cursor: pointer;
+  text-align: left;
+
+  svg {
+    margin-left: auto; /* 토글 이미지를 오른쪽으로 이동 */
+  }
 `;
 
 const AccordionContent = styled.div`
@@ -134,6 +139,8 @@ const AccordionContent = styled.div`
   border-radius: 5px;
   background-color: #f5f5f5;
   text-align: center;
+  transition: max-height 0.3s ease;
+  overflow: hidden;
 `;
 
 const PopupOverlay = styled.div`
@@ -166,6 +173,9 @@ const TextWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-top: -41px;
+  padding-bottom: 30px;
 `;
 
 const CustomText = styled.p`
@@ -183,17 +193,63 @@ const LightningIcon = styled.span`
 const AccordionItem = ({ title, isOpen, onClick }) => (
   <Accordion onClick={onClick}>
     <AccordionTitle>
-      {isOpen ? <IoIosArrowUp size={18} /> : <IoIosArrowDown size={18} />}
-      {title}
+      <span>{title}</span> {/* 텍스트를 왼쪽으로 이동 */}
+      {isOpen ? <IoIosArrowUp size={18} /> : <IoIosArrowDown size={18} />} {/* 토글 이미지 */}
     </AccordionTitle>
     <AccordionContent isOpen={isOpen}>
-      <IoIosArrowUp size={18} />
-      {title}
-      <br />
-      Accordion Content
+      {isOpen && (
+        <>
+          <IoIosArrowUp size={18} />
+          {title}
+          <br />
+          Accordion Content
+        </>
+      )}
     </AccordionContent>
   </Accordion>
 );
+
+const AccordionCard2 = styled(AccordionCard)`
+  width: 120%;
+  margin-top: -210px;
+  margin-left: -25px;
+`;
+
+const SquareCardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+`;
+
+const SquareCard = styled.div`
+  width: 100px;
+  height: 155px;
+  background-color: #fff;
+  margin-top: -220px;
+  margin-right: 26px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+`;
+
+const SquareCardContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
+const SquareCardTitle = styled.h4`
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+`;
 
 const NFTCard = () => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
@@ -232,7 +288,7 @@ const NFTCard = () => {
               <Title size="40px" color="#000">{nft.title}</Title>
               <Title size="20px" color="#000">Owned by A78E0C</Title>
               <TextWrapper>
-                <CustomText size="16px" color="#000">Ethereum</CustomText>
+                <CustomText size="18px" color="#000">Ethereum</CustomText>
                 <LightningIcon>⚡️</LightningIcon>
               </TextWrapper>
             </NFTTitleContainer>
@@ -263,21 +319,52 @@ const NFTCard = () => {
         </AccordionCard>
       </Container2>
       <Container2>
-        <AccordionCard>
+        <AccordionCard2>
           <AccordionContainer>
             <AccordionItem
               title="Description"
               isOpen={accordionState[3]}
               onClick={() => handleAccordionToggle(3)}
             />
-            <div style={{ marginBottom: '20px' }} />
             <AccordionItem
               title="Description 2"
               isOpen={accordionState[4]}
               onClick={() => handleAccordionToggle(4)}
             />
           </AccordionContainer>
-        </AccordionCard>
+        </AccordionCard2>
+        <SquareCardsContainer>
+          <SquareCard>
+            <SquareCardContent>
+              <SquareCardTitle>Traits part 1</SquareCardTitle>
+              <SquareCardTitle>Traits % 2</SquareCardTitle>
+            </SquareCardContent>
+          </SquareCard>
+          <SquareCard>
+            <SquareCardContent>
+              <SquareCardTitle>Traits part 2</SquareCardTitle>
+              <SquareCardTitle>Traits % 2</SquareCardTitle>
+            </SquareCardContent>
+          </SquareCard>
+          <SquareCard>
+            <SquareCardContent>
+              <SquareCardTitle>Traits part 3</SquareCardTitle>
+              <SquareCardTitle>Traits % 2</SquareCardTitle>
+            </SquareCardContent>
+          </SquareCard>
+          <SquareCard>
+            <SquareCardContent>
+              <SquareCardTitle>Traits part 4</SquareCardTitle>
+              <SquareCardTitle>Traits % 2</SquareCardTitle>
+            </SquareCardContent>
+          </SquareCard>
+          <SquareCard>
+            <SquareCardContent>
+              <SquareCardTitle>Traits part 5</SquareCardTitle>
+              <SquareCardTitle>Traits % 2</SquareCardTitle>
+            </SquareCardContent>
+          </SquareCard>
+        </SquareCardsContainer>
       </Container2>
       {isPopupOpen && (
         <PopupOverlay onClick={handleClosePopup}>
