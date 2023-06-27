@@ -38,15 +38,28 @@ const App = () => {
     }
   };
 
-  const requestAccessToken = (address) => {
+  const requestAccessToken = async (address) => {
     //로그인 진행 시 address를 기반으로 서버에 JWT access Token을 받아온다.
-    axios
-      .post("http://127.0.0.1:4000/api/v1/user/login", { address })
-      .then((response) => {
-        console.log(response);
-        //   setAccessToken(response.data.accessToken);
-        //   setAddress(address);
-      });
+    try {
+      const response = await axios.post(
+        "/api/v1/user/login",
+        { address },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        setAccessToken(response.data.accessToken);
+      } else {
+        throw new Error("로그인 실패");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const web3Init = () => {
@@ -57,7 +70,7 @@ const App = () => {
       webProvider = window.ethereum; //브라우저에 메타마스크 지갑이 있을 경우
     } else if (window.web3) {
       webProvider = window.web3.currentProvider;
-    } else if (typeof window.web3 !== "undefiend") {
+    } else if (typeof window.web3 !== "undefined") {
       webProvider =
         "https://goerli.infura.io/v3/7bcccb589f144d16a1b7871c29fdc6a4";
     } else {

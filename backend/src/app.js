@@ -18,7 +18,7 @@ const main = async () => {
   app.use(loggerMiddleware.requestLogger(logger));
   app.use(
     cors({
-      origin: ["https://localhost:3000"],
+      origin: ["http://localhost:3000"],
       credentials: true,
       methods: ["GET", "POST", "OPTIONS"],
     })
@@ -39,15 +39,3 @@ const main = async () => {
 };
 
 main();
-
-// const userModel = require("./models/user");
-
-// const test = async () => {
-//   const user = await userModel.findUserByAddress(
-//     "0x15a88243b4c61ef0071e3527b88873CAF4A334dD"
-//   );
-
-//   console.log(user);
-// };
-
-// test();
