@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../components/container/Container";
+// import Container from "../components/container/Container";
 import MainCompnent from "../components/frame/main/main-page-main-component/MainCompnent";
 
 
