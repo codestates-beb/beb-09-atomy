@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
+import Header from "./components/frame/header/Header";
+import Footer from "./components/frame/footer/Footer";
+
 import Main from "./pages/Main";
 import Search from "./pages/Search";
 import CollectionInfo from "./pages/CollectionInfo";
 import NFTInfo from "./pages/NFTInfo";
 import Test from "./pages/Test";
+
 import Web3 from "web3";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -37,10 +39,10 @@ const App = () => {
   };
 
   const reqeustAccessToken = (address) => {
-    axios.post("http://127.0.0.1:4000/login", { address }).then((response) => {
-      setAccessToken(response.data.accessToken);
-      setAddress(address);
-    });
+    // axios.post("http://127.0.0.1:4000/login", { address }).then((response) => {
+    //   setAccessToken(response.data.accessToken);
+    //   setAddress(address);
+    // });
   };
 
   const web3Init = () => {
