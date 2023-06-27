@@ -101,6 +101,26 @@ class userService {
       throw error;
     }
   }
+
+  async userProfile(address) {
+    try {
+      const userData = await this.userModel.findUserByAddress(address);
+      if (!userData) {
+        throw new Error("User not found");
+      }
+
+      const user = {
+        address: userData.address,
+        name: userData.name,
+        created_date: userData.created_date,
+        updated_date: userData.updated_date,
+      };
+
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 module.exports = userService;
