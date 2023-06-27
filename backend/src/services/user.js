@@ -8,7 +8,7 @@ class userService {
 
   tokenPair(user) {
     const accessToken = jwt.sign(user, cfg.access_token_secret, {
-      expiresIn: "10m",
+      expiresIn: "15m",
     });
     const refreshToken = jwt.sign(user, cfg.refresh_token_secret, {
       expiresIn: "1h",

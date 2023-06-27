@@ -8,10 +8,10 @@ class userController {
   getRouter() {
     const router = express.Router();
     router.post("/user/login", this.login.bind(this));
+    router.post("/user/refresh", this.refresh.bind(this));
 
     router.use(this.validate.bind(this));
     router.post("/user/logout", this.logout.bind(this));
-    router.post("/user/refresh", this.refresh.bind(this));
     router.get("/user/profile", this.getProfile.bind(this));
 
     return router;
