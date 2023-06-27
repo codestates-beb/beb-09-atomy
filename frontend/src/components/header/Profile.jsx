@@ -57,7 +57,7 @@ const SubMenu = styled.div`
 
 `;
 
-const Profile = ({web3, setIsLogged, isLogged}) => {
+const Profile = ({web3, setIsLogged}) => {
     const [balance, setBalance] = useState("");
     const nav = useNavigate();
     useEffect(()=>{
@@ -78,20 +78,6 @@ const Profile = ({web3, setIsLogged, isLogged}) => {
     }
 
     const handleLogOut = async () => {
-        // if(typeof window.ethereum !== 'undefined') {
-        //     window.ethereum.disconnect()
-        //     .then(() => {
-        //         console.log("지갑 연결이 해제되었습니다.")
-        //         setIsLogged(false);
-        //     })
-        //     .catch((error)=> {
-        //         console.error("지갑 연결 해제 오류:", error);
-        //     })
-        // }
-        // else {
-        //     console.warn("지갑 연결이 이미 해제되었거나, 지갑이 지원되지 않습니다.");
-        // }
-
         setIsLogged(false);
         nav("/");
         
