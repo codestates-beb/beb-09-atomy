@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+# jegung
 const StyledInput = styled.input`
   background-image: url(/search.png); /* 이미지 파일의 경로 수정 */
+=======
+const SearchbarInput = styled.input`
+  background-image: url(search.png);
+# dev
   background-position: 5px center;
   background-repeat: no-repeat;
   padding-left: 40px;
@@ -23,7 +28,7 @@ const StyledInput = styled.input`
 const SearchBar = () => {
   return (
     <form>
-      <StyledInput
+      <SearchbarInput
         type="text"
         placeholder="Search NFT"
         className="search_bar"
