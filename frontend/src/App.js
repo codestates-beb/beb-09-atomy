@@ -8,14 +8,40 @@ import NFTInfo from "./pages/NFTInfo";
 import Test from "./pages/Test";
 import Web3 from "web3";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 const App = () => {
   const [web3, setWeb3] = useState("");
   const [isLogged, setIsLogged] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
+  const [address, setAddress] = useState("");
 
   useEffect(() => {
-    web3Init();
-  }, []);
+    web3Init(); //web3 인스턴스가 변동이 있을때마다 초기화.
+  }, [web3]);
+
+  useEffect(() => {
+    handleSetAddress(); // address가 변할때마다 재설정 작업.
+  }, [address]);
+
+  useEffect(() => {
+    reqeustAccessToken(); // access토큰이 변할때마다 재설정 작업.
+  }, [accessToken]);
+
+  const handleSetAddress = () => {
+    if (web3 !== "") {
+      web3.eth.getAccounts().then((address) => {
+        setAddress(address);
+      });
+    }
+  };
+
+  const reqeustAccessToken = (address) => {
+    axios.post("http://127.0.0.1:4000/login", { address }).then((response) => {
+      setAccessToken(response.data.accessToken);
+      setAddress(address);
+    });
+  };
 
   const web3Init = () => {
     //provder 선언 및 web3 인스턴스 생성
@@ -42,7 +68,12 @@ const App = () => {
 
   return (
     <Router>
-      <Header web3={web3} isLogged={isLogged} setIsLogged={setIsLogged} />
+      <Header
+        web3={web3}
+        isLogged={isLogged}
+        setIsLogged={setIsLogged}
+        reqeustAccessToken={reqeustAccessToken}
+      />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/search/:keyword" element={<Search />} />

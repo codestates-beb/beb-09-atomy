@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import axios from 'axios';
+
 
 const StyledButton = styled.button`
+  margin-right:40px;
   background:inherit;
   border:none;
   box-shadow: none;
@@ -15,13 +16,15 @@ const StyledButton = styled.button`
   }
 `;
 
-const WalletConnection = ({web3, setIsLogged}) => {
-    const handleWalletConnect = () => {
+
+const WalletConnection = ({web3, setIsLogged, requestAccessToken}) => {
+    
+    const handleWalletConnect = () => { // 로그인 시도
         web3.eth.requestAccounts()
         .then((accounts)=>{
             setIsLogged(true);
             const account = accounts[0]
-            axios.post("http://127.0.0.1:4000/login", {account})
+            requestAccessToken(account);
 
         })
         .catch((error)=>{
