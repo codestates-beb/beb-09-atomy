@@ -10,7 +10,7 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-image: url("bg.png");
+  background-image: url("/bg.png"); // 이미지 파일의 경로 수정
   background-size: cover;
   padding: 2%;
   text-align: center;
@@ -94,13 +94,13 @@ const Footer = () => (
   <FooterContainer>
     <LogoAndLinksContainer>
       <LogoContainer>
-        <Logo src="logo.png" alt="Logo" />
+        <Logo src="/logo.png" alt="Logo" /> {/* 이미지 파일의 경로 수정 */}
         <LogoName>Atomy</LogoName>
       </LogoContainer>
       <FooterLinks>
-        <FooterLink href="https://www.instagram.com/"><LinkLogo src="sns1.png" alt="" /></FooterLink>
-        <FooterLink href="https://www.youtube.com/"><LinkLogo src="sns2.png" alt="" /></FooterLink>
-        <FooterLink href="https://twitter.com/"><LinkLogo src="sns3.png" alt="" /></FooterLink>
+        <FooterLink href="https://www.instagram.com/"><LinkLogo src="/sns1.png" alt="" /></FooterLink> {/* 이미지 파일의 경로 수정 */}
+        <FooterLink href="https://www.youtube.com/"><LinkLogo src="/sns2.png" alt="" /></FooterLink> {/* 이미지 파일의 경로 수정 */}
+        <FooterLink href="https://twitter.com/"><LinkLogo src="/sns3.png" alt="" /></FooterLink> {/* 이미지 파일의 경로 수정 */}
       </FooterLinks>
     </LogoAndLinksContainer>
     <LogoDescription>
@@ -111,7 +111,7 @@ const Footer = () => (
     </LogoDescription>
     <FooterText>
       © 2023 Atomy Company
-      <LogoIcon src="korea.png" alt="Logo Icon" />
+      <LogoIcon src="/korea.png" alt="Logo Icon" /> {/* 이미지 파일의 경로 수정 */}
       <CountryText>이효확 이동욱 이승민 한재경</CountryText>
     </FooterText>
   </FooterContainer>

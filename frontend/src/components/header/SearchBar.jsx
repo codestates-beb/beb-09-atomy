@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+# jegung
+const StyledInput = styled.input`
+  background-image: url(/search.png); /* 이미지 파일의 경로 수정 */
+=======
 const SearchbarInput = styled.input`
   background-image: url(search.png);
+# dev
   background-position: 5px center;
   background-repeat: no-repeat;
   padding-left: 40px;
@@ -12,9 +17,9 @@ const SearchbarInput = styled.input`
   box-sizing: border-box;
   /* outline: none; */
   border-radius: 5px;
-  &:hover{
+  &:hover {
     background: #fbfafa;
-    background-image: url(search.png);
+    background-image: url(/search.png); /* 이미지 파일의 경로 수정 */
     background-position: 5px center;
     background-repeat: no-repeat;
   }
@@ -31,7 +36,6 @@ const SearchBar = () => {
       />
     </form>
   );
-    
 };
 
 export default SearchBar;
