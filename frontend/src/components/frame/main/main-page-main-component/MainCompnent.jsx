@@ -1,5 +1,5 @@
 import React from 'react';
-import CollectionCardContainer from '../../frequently-used/collection/CollectionCardContainer';
+import CollectionCardContainer from '../../../frequently-used/collection/CollectionCardContainer';
 import styled from "styled-components";
 
 const MainCompo = styled.div`
