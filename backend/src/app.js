@@ -2,6 +2,7 @@ require("./loaders/mongo");
 
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const logger = require("./loaders/logger");
 const loggerMiddleware = require("./middlewares/logger");
@@ -17,6 +18,7 @@ const main = async () => {
   app.use(loggerMiddleware.requestLogger(logger));
   app.use(cors());
   app.use(express.json());
+  app.use(cookieParser());
 
   app.use("/api/v1", healthcheckRouter);
   app.use("/api/v1", collectionRouter);

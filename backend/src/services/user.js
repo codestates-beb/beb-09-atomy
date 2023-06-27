@@ -7,7 +7,6 @@ class userService {
   }
 
   tokenPair(user) {
-    console.log(user);
     const accessToken = jwt.sign(user, cfg.access_token_secret, {
       expiresIn: "10m",
     });
