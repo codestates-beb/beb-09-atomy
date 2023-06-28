@@ -30,30 +30,6 @@ const App = () => {
     }
   }, [address]);
 
-  useEffect(() => {
-    //main페이지 collection api 호출
-    requestCollectionsAPI(12);
-  }, []);
-
-  const requestCollectionsAPI = async (size) => {
-    //
-    try {
-      const response = await axios.get(`/api/v1/collections?size=${size}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      });
-      if (response.status === 200) {
-        setCollections(response.data);
-      } else {
-        throw new Error("err occurred to get collection infomation");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const refreshAccessToken = async (address) => {
     try {
       const response = await axios.post(
@@ -146,7 +122,12 @@ const App = () => {
         handleLogout={handleLogout}
       />
       <Routes>
-        <Route path="/" element={<Main collections={collections} />} />
+        <Route
+          path="/"
+          element={
+            <Main collections={collections} setCollections={setCollections} />
+          }
+        />
         {/* <Route path="/search/:keyword" element={<Search />} /> */}
         <Route path="/collection/:slug" element={<CollectionInfo />} />
         <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />

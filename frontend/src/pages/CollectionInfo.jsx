@@ -21,6 +21,7 @@ const CollectionInfo = () => {
             })
             if(response.status === 200) {
                 setCollectionInfo(response.data);
+                console.log(response.data);
             }
             else {
                 throw new Error("not be able to query collection");
@@ -45,7 +46,7 @@ const CollectionInfo = () => {
             created_date={collectionInfo.collection.created_date}      
             />
             <NFTCardContainer 
-            nfts={collectionInfo.nfts} slug={slug}
+            nfts={collectionInfo.nfts} slug={slug} total_supply={collectionInfo.collection.total_supply}
             />
         </>
       :""}
