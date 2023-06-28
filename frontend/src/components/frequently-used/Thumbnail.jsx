@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components';
 
 const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 55%;
+  height: 55%;
   object-fit: cover;
   border-radius: 30px;
   cursor: pointer;
