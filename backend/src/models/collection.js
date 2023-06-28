@@ -4,7 +4,6 @@ const collectionSchema = new mongo.Schema({
   address: {
     type: String,
     required: true,
-    unique: true,
     index: true,
   },
   chain_identifier: {
