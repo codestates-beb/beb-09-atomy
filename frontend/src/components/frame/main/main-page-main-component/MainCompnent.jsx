@@ -1,16 +1,16 @@
 import React from 'react';
-import CollectionCardContainer from '../../../frequently-used/collection/CollectionCardContainer';
+import CollectionCardContainer from './CollectionCardContainer';
 import styled from "styled-components";
 
-const MainCompo = styled.div`
+const MainCompoDiv = styled.div`
     margin:100px;
 `;
 
 const MainCompnent = ({collections}) => {
   return (
-    <MainCompo>
+    <MainCompoDiv>
         <CollectionCardContainer collections={collections}/>
-    </MainCompo>
+    </MainCompoDiv>
   )
 }
 
