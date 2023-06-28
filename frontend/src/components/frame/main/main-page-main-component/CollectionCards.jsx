@@ -1,11 +1,11 @@
 import React from "react";
 // import { useSelector } from 'react-redux';
 import styled from 'styled-components'
-import CollectionCard from "./CollectionCard";
+import CollectionCard from "../../../frequently-used/collection/CollectionCard";
 
 
 
-export const Cards = styled.div`
+export const CardsDiv = styled.div`
    /* margin-top: 40px;
   margin-left: 100px; */
   margin-bottom: 50px; 
@@ -19,11 +19,11 @@ export const Cards = styled.div`
 const CollectionCards = ({collections}) =>{
     
   return(
-    <Cards>
+    <CardsDiv>
         {collections.map((collection)=>(
             <CollectionCard image={collection.image_url} title={collection.name} owner={collection.owner} NFTQuantity={collections.total_supply} volume={collection.total_volume} path={`/collection?id=${collection.name}`}/>
         ))}
-    </Cards>
+    </CardsDiv>
   );
 }
 

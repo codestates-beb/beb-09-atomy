@@ -3,14 +3,14 @@ import CollectionCards from './CollectionCards';
 import { Pagination} from '@mui/material';
 import styled from 'styled-components';
 
-const CollectionContainer = styled.div`
+const CollectionContainerDiv = styled.div`
     text-align: center;
     margin:20px;
 `;
 
 const CollectionCardContainer = ({ collections }) => {
   return (
-    <CollectionContainer>
+    <CollectionContainerDiv>
         <CollectionCards collections={ collections }/>
         <Pagination 
         style={{display:"inline-block"}} 
@@ -19,7 +19,7 @@ const CollectionCardContainer = ({ collections }) => {
         variant='outlined' 
         size="large" 
         />
-    </CollectionContainer>
+    </CollectionContainerDiv>
   )
 }
 
