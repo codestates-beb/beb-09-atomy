@@ -15,3 +15,5 @@ const connect = async () => {
 };
 
 connect();
+
+module.exports = mongo;
