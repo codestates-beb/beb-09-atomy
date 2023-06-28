@@ -8,10 +8,10 @@ const CollectionContainer = styled.div`
     margin:20px;
 `;
 
-const CollectionCardContainer = () => {
+const CollectionCardContainer = ({ collections }) => {
   return (
     <CollectionContainer>
-        <CollectionCards/>
+        <CollectionCards collections={ collections }/>
         <Pagination 
         style={{display:"inline-block"}} 
         count={10} 

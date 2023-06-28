@@ -20,7 +20,6 @@ class userController {
   async login(req, res, next) {
     try {
       const { address } = req.body;
-
       const { user, accessToken, refreshToken } = await this.userService.login(
         address
       );

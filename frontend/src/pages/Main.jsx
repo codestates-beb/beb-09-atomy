@@ -3,9 +3,9 @@ import React from "react";
 import MainCompnent from "../components/frame/main/main-page-main-component/MainCompnent";
 
 
-const Main = () => {
+const Main = ({collections}) => {
   return (
-    <MainCompnent/>
+    <MainCompnent collections={collections}/>
   );
 };
 
