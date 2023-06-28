@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import NFTCard from "../../../frequently-used/nft/NFTCard";
+import NFTCard from "../../../../frequently-used/nft/NFTCard";
 
 
 
