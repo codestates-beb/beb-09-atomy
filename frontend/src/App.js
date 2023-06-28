@@ -9,7 +9,7 @@ import Footer from "./components/frame/footer/Footer";
 import Main from "./pages/Main";
 import CollectionInfo from "./pages/CollectionInfo";
 import NFTInfo from "./pages/NFTInfo";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
 
 const App = () => {
   const [web3, setWeb3] = useState("");
@@ -32,10 +32,10 @@ const App = () => {
 
   useEffect(() => {
     //main페이지 collection api 호출
-    requestCollectionInfomation(12);
+    requestCollectionsAPI(12);
   }, []);
 
-  const requestCollectionInfomation = async (size) => {
+  const requestCollectionsAPI = async (size) => {
     //
     try {
       const response = await axios.get(`/api/v1/collections?size=${size}`, {
@@ -149,8 +149,8 @@ const App = () => {
         <Route path="/" element={<Main collections={collections} />} />
         {/* <Route path="/search/:keyword" element={<Search />} /> */}
         <Route path="/collection/:slug" element={<CollectionInfo />} />
-        <Route path="/nft/:slug/:token_id" element={<NFTInfo />} />
-        <Route path="/test" element={<Test />} />
+        <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />
+        {/* <Route path="/test" element={<Test />} /> */}
       </Routes>
       <Footer />
     </Router>

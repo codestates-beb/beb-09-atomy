@@ -9,7 +9,6 @@ const NFTCardDiv = styled.div`
   height:300px;
   width: 250px;
   border-radius: 10%;
-  /* background-color: aquamarine; */
   box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
   position: relative;
   &:hover {
@@ -33,11 +32,6 @@ const TitleDiv = styled.div`
     font-family: "Hi Melody cursive";
 `;
 
-// const OwnerDiv = styled.div`
-//     margin-left: 20px;
-//     display:float;
-// `;
-
 const SubInfoDiv = styled.div`
     padding: 10px 30px;
     position:relative;
@@ -50,12 +44,12 @@ const SubInfoDiv = styled.div`
 
 `;
 
-const NFTCard = ({image, title, price, path}) => {
+const NFTCard = ({image, name, price, path}) => {
   const nav = useNavigate();
   return (
     <NFTCardDiv onClick={()=>{nav(path)}}> 
         <img src={image} width="100%" height="60%" alt="" />
-        <TitleDiv>{title}</TitleDiv>
+        <TitleDiv>{name}</TitleDiv>
         <SubInfoDiv>
             <div>{parseInt(price).toFixed(2)} ETH</div> 
         </SubInfoDiv>

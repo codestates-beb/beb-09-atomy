@@ -96,22 +96,7 @@ const NFTMainPageComponent = () => {
         <Square text1="Traits part1" text2="Traits 2%"/>
         <Square text1="Traits part1" text2="Traits 2%"/>
         <Square text1="Traits part1" text2="Traits 2%"/>
-        {/* <Square>
-          <span>Traits part1</span>
-          <span>Traits 2%</span>
-        </Square>
-        <Square>
-          <span>Traits part2</span>
-          <span>Traits 2%</span>
-        </Square>
-        <Square>
-          <span>Traits part3</span>
-          <span>Traits 2%</span>
-        </Square>
-        <Square>
-          <span>Traits part4</span>
-          <span>Traits 2%</span>
-        </Square> */}
+  
       </SquareContainer>
       <Container2>
         <NFTPrice price={nft.price} />

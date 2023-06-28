@@ -7,11 +7,11 @@ const NFTContainerDiv = styled.div`
     margin:20px;
 `;
 
-const NFTCardContainer = () => {
+const NFTCardContainer = ({nfts, total_supply, slug}) => {
   return (
     <NFTContainerDiv>
-        <span>8657 items</span>
-        <NFTCards/>
+        <span>{total_supply} items</span>
+        <NFTCards nfts={nfts} slug={slug}/>
     </NFTContainerDiv>
   )
 }
