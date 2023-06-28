@@ -31,7 +31,7 @@ const CollectionCards = ({image, title, owner, NFTQuantity, volume, path}) =>{
         <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
         <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
         <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
+        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/nft/:id"}/>
     </Cards>
   );
 }
