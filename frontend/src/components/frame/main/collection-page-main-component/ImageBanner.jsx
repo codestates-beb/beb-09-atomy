@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ImageBannerComponent = () => {
+const ImageBanner = () => {
   return (
     <ImageContainer>
       <ResponsiveImage src="/ImageBanner.png" alt="Image Banner" />
@@ -45,4 +45,4 @@ const ProfileImage = styled.img`
   }
 `;
 
-export default ImageBannerComponent;
+export default ImageBanner;

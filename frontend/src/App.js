@@ -24,16 +24,19 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    // 웹 refresh시 access token 재 호출
     if (address.length > 0) {
       refreshAccessToken(address);
     }
   }, [address]);
 
   useEffect(() => {
-    requestCollectionInfomation(10);
+    //main페이지 collection api 호출
+    requestCollectionInfomation(12);
   }, []);
 
   const requestCollectionInfomation = async (size) => {
+    //
     try {
       const response = await axios.get(`/api/v1/collections?size=${size}`, {
         headers: {
@@ -149,13 +152,6 @@ const App = () => {
         <Route path="/nft/:id" element={<NFTInfo />} />
         <Route path="/test" element={<Test />} />
       </Routes>
-      <button
-        onClick={() => {
-          console.log(collections);
-        }}
-      >
-        der
-      </button>
       <Footer />
     </Router>
   );

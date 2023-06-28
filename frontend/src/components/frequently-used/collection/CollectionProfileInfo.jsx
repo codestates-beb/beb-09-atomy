@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 
-const CollectionProfileInfo = () => {
-  return <div>CollectionProfileInfo</div>;
-};
+// const CollectionProfileInfo = () => {
+//   return <div>CollectionProfileInfo</div>;
+// };
 
-export default CollectionProfileInfo;
+// export default CollectionProfileInfo;

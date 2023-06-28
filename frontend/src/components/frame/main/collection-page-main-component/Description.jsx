@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components';
 
-const DescriptionComponent = () => {
+const Description = () => {
   return (
-    <DescriptionContainer>
+    <DescriptionDiv>
       <Title>Example Title</Title>
       <Text>This is an example description text for the image. It provides information about the image such as its origin, creation date, artist, etc.</Text>
-    </DescriptionContainer>
+    </DescriptionDiv>
   )
 }
 
-const DescriptionContainer = styled.div`
+const DescriptionDiv = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,4 @@ const Text = styled.p`
   max-width: 800px;
 `;
 
-export default DescriptionComponent;
+export default Description;

@@ -1,14 +1,14 @@
 import React from "react";
-import ImageBannerComponent from "../components/frame/main/collection-page-main-component/ImageBannerComponent";
-import DescriptionComponent from "../components/frame/main/collection-page-main-component/DescriptionComponent";
-import NFTCardContainerComponent from "../components/frame/main/collection-page-main-component/NFTCardContainerComponent";
+import ImageBanner from "../components/frame/main/collection-page-main-component/ImageBanner";
+import Description from "../components/frame/main/collection-page-main-component/Description";
+import NFTCardContainer from "../components/frame/main/collection-page-main-component/NFTCardContainer";
 
 const CollectionInfo = () => {
   return (
     <>
-      <ImageBannerComponent />
-      <DescriptionComponent />
-      <NFTCardContainerComponent />
+      <ImageBanner />
+      <Description />
+      <NFTCardContainer />
     </>
   );
 };

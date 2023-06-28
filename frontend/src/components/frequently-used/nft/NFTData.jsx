@@ -191,12 +191,13 @@ const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
         </ButtonContainer>
       </NFTInfoContainer>
       <AccordionContainer>
+        {/* Todo: component화 하기 */}
         <AccordionItem
           title="Price History"
           isOpen={accordionState[0]}
           onClick={() => handleAccordionToggle(0)}
         />
-        <AccordionItem
+        {/* <AccordionItem
           title="Listings"
           isOpen={accordionState[1]}
           onClick={() => handleAccordionToggle(1)}
@@ -205,7 +206,7 @@ const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
           title="Offers"
           isOpen={accordionState[2]}
           onClick={() => handleAccordionToggle(2)}
-        />
+        /> */}
         <LongAccordionContent>
         <AccordionItem
           title="Long Accordion 1"
