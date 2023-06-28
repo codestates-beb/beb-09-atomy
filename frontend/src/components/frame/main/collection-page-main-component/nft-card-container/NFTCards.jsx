@@ -1,13 +1,10 @@
 import React from "react";
-// import { useSelector } from 'react-redux';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import NFTCard from "../../../frequently-used/nft/NFTCard";
 
 
 
 export const NFTCardsDiv = styled.div`
-   /* margin-top: 40px;
-  margin-left: 100px; */
   margin-bottom: 50px; 
   display:grid;
   grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
@@ -16,12 +13,12 @@ export const NFTCardsDiv = styled.div`
 
 
 
-const NFTCards = ({collections}) =>{
+const NFTCards = ({NFTs}) =>{
     
   return(
     <NFTCardsDiv>
-        {collections.map((collection)=>(
-            <NFTCard image={collection.image_url} title={collection.name} owner={collection.owner} NFTQuantity={collections.total_supply} volume={collection.total_volume} path={`/collection?id=${collection.name}`}/>
+        {NFTs.map((NFT)=>(
+            <NFTCard image={NFT.image_url} title={NFT.name} NFTQuantity={NFT.total_supply} volume={NFT.total_volume} path={`/nft?id=${NFT.name}`}/>
         ))}
     </NFTCardsDiv>
   );

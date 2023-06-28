@@ -10,6 +10,7 @@ const NFTContainerDiv = styled.div`
 const NFTCardContainer = ({ }) => {
   return (
     <NFTContainerDiv>
+        <span>8657 items</span>
         <NFTCards/>
     </NFTContainerDiv>
   )

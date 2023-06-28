@@ -33,16 +33,16 @@ const TitleDiv = styled.div`
     font-family: "Hi Melody cursive";
 `;
 
-const OwnerDiv = styled.div`
-    margin-left: 20px;
-    display:float;
-`;
+// const OwnerDiv = styled.div`
+//     margin-left: 20px;
+//     display:float;
+// `;
 
 const SubInfoDiv = styled.div`
     padding: 10px 30px;
     position:relative;
     top:15px;
-    font-size: 15px;;
+    font-size: 15px;
     overflow: hidden;
     display: flex;
     align-items:center;
@@ -50,16 +50,14 @@ const SubInfoDiv = styled.div`
 
 `;
 
-const NFTCard = ({image, title, owner, NFTQuantity, volume, path}) => {
+const NFTCard = ({image, title, price, path}) => {
   const nav = useNavigate();
   return (
     <NFTCardDiv onClick={()=>{nav(path)}}> 
         <img src={image} width="100%" height="60%" alt="" />
         <TitleDiv>{title}</TitleDiv>
-        <OwnerDiv>by {owner}</OwnerDiv>
         <SubInfoDiv>
-            <div>{parseInt(NFTQuantity).length > 0 ? `NFT 개수 : ${NFTQuantity}`:""}</div> 
-            <div>{parseInt(volume).toFixed(2)} ETH</div> 
+            <div>{parseInt(price).toFixed(2)} ETH</div> 
         </SubInfoDiv>
     </NFTCardDiv>
   );
