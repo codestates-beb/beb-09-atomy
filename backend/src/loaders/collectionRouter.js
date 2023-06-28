@@ -1,4 +1,8 @@
-const model = require("../models/collection");
+const collectionModel = require("../models/collection");
+const nftModel = require("../models/nft");
 const collectionController = require("../api/collection");
 
-module.exports = new collectionController(model).getRouter();
+module.exports = new collectionController(
+  collectionModel,
+  nftModel
+).getRouter();
