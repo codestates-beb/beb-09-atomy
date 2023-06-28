@@ -1,15 +1,20 @@
 const express = require("express");
 
 class collectionController {
-  constructor(collectionModel) {
+  constructor(collectionModel, nftModel) {
     this.collectionModel = collectionModel;
+    this.nftModel = nftModel;
   }
 
   getRouter() {
     const router = express.Router();
     router.get("/collections", this.randomCollections.bind(this));
     router.get("/collections/:slug", this.getCollectionBySlug.bind(this));
-    router.post("/collections/:collection_name/drop", this.dropNFT.bind(this));
+    router.get(
+      "/collections/:slug/:token_id",
+      this.getNFTBySlugAndTokenId.bind(this)
+    );
+    router.post("/collections/:slug/drop", this.dropNFT.bind(this));
     return router;
   }
 
@@ -34,7 +39,6 @@ class collectionController {
       const collections = await this.collectionModel.findRandom(parsedSize);
       res.send(collections);
     } catch (err) {
-      res.status(500);
       next(err);
     }
   }
@@ -43,9 +47,28 @@ class collectionController {
     try {
       const { slug } = req.params;
       const collection = await this.collectionModel.findBySlug(slug);
-      res.send(collection);
+      if (!collection) {
+        res.status(404);
+        throw new Error("Collection not found");
+      }
+
+      const nfts = await this.nftModel.findNFTsBySlug(slug);
+      res.send({ collection, nfts });
     } catch (err) {
-      res.status(500);
+      next(err);
+    }
+  }
+
+  async getNFTBySlugAndTokenId(req, res, next) {
+    try {
+      const { slug, token_id } = req.params;
+      const nft = await this.nftModel.findNFTBySlugAndTokenId(slug, token_id);
+      if (!nft) {
+        res.status(404);
+        throw new Error("NFT not found");
+      }
+      res.send(nft);
+    } catch (err) {
       next(err);
     }
   }
