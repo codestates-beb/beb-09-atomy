@@ -21,7 +21,7 @@ const CollectionCards = ({collections}) =>{
   return(
     <Cards>
         {collections.map((collection)=>(
-            <CollectionCard image={collection.image_url} title={collection.name} owner={collection.owner} NFTQuantity={collections.total_supply} volume={collection.total_volume} path={"/collection/airpot"}/>
+            <CollectionCard image={collection.image_url} title={collection.name} owner={collection.owner} NFTQuantity={collections.total_supply} volume={collection.total_volume} path={`/collection?id=${collection.name}`}/>
         ))}
     </Cards>
   );

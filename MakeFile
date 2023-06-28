@@ -1,0 +1,7 @@
+up_backend:
+	@echo "Starting backend server..."
+	cd backend && npm run dev
+
+up_frontend:
+	@echo "Staring frontend server..."
+	cd frontend && npm start
