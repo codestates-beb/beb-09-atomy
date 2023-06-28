@@ -57,7 +57,7 @@ const SubMenu = styled.div`
 
 `;
 
-const Profile = ({web3, setIsLogged}) => {
+const Profile = ({web3, handleLogout}) => {
     const [balance, setBalance] = useState("");
     const nav = useNavigate();
     useEffect(()=>{
@@ -77,13 +77,6 @@ const Profile = ({web3, setIsLogged}) => {
         });
     }
 
-    const handleLogOut = async () => {
-        setIsLogged(false);
-        nav("/");
-        
-    }
-
-
     return (
         <ProfileDiv>
             <h3>{balance} ETH</h3>
@@ -98,7 +91,7 @@ const Profile = ({web3, setIsLogged}) => {
                         <img src="pencil.png" alt="pencil" width="50px" height="50px"/>
                         <h4>create</h4>
                     </SubMenu>
-                    <SubMenu onClick={handleLogOut}>
+                    <SubMenu onClick={handleLogout}>
                         <img src="logout1.png" alt="logout" width="50px" height="50px"/>
                         <h4>Log Out</h4>
                     </SubMenu>

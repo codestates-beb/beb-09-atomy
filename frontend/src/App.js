@@ -1,16 +1,15 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Web3 from "web3";
+import axios from "axios";
+
 import Header from "./components/frame/header/Header";
 import Footer from "./components/frame/footer/Footer";
 
 import Main from "./pages/Main";
-import Search from "./pages/Search";
 import CollectionInfo from "./pages/CollectionInfo";
 import NFTInfo from "./pages/NFTInfo";
 import Test from "./pages/Test";
-
-import Web3 from "web3";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const App = () => {
   const [web3, setWeb3] = useState("");
@@ -19,25 +18,38 @@ const App = () => {
   const [address, setAddress] = useState("");
 
   useEffect(() => {
-    web3Init(); //web3 인스턴스가 변동이 있을때마다 초기화.
-  }, [web3]);
+    //첫 랜더링시 web3 인스턴스 초기화.
+    web3Init();
+  }, []);
 
-  //   useEffect(() => {
-  //     handleSetAddress(); // address가 변할때마다 재설정 작업.
-  //   }, [address]);
+  useEffect(() => {
+    if (address.length > 0) {
+      refreshAccessToken(address);
+    }
+  }, [address]);
 
-  //   useEffect(() => {
-  //     // reqeustAccessToken(); // access토큰이 변할때마다 재설정 작업.
-  //   }, [accessToken]);
-
-  const handleSetAddress = () => {
-    if (web3 !== "") {
-      web3.eth.getAccounts().then((address) => {
-        setAddress(address);
-      });
+  const refreshAccessToken = async (address) => {
+    try {
+      const response = await axios.post(
+        "/api/v1/user/refresh",
+        { address },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      if (response.status === 200) {
+        setAccessToken(response.data.accessToken);
+        setIsLogged(true);
+      } else {
+        throw new Error("refresh access token faild");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
-
   const requestAccessToken = async (address) => {
     //로그인 진행 시 address를 기반으로 서버에 JWT access Token을 받아온다.
     try {
@@ -54,6 +66,7 @@ const App = () => {
 
       if (response.status === 200) {
         setAccessToken(response.data.accessToken);
+        setIsLogged(true);
       } else {
         throw new Error("로그인 실패");
       }
@@ -62,13 +75,27 @@ const App = () => {
     }
   };
 
-  const web3Init = () => {
+  const handleLogout = async () => {
+    const response = await axios.post("/api/v1/user/logout", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+    if (response.status === 200) {
+      setIsLogged(false);
+      setAccessToken("");
+    }
+  };
+
+  const web3Init = async () => {
     //provder 선언 및 web3 인스턴스 생성
     let webProvider = "";
 
     if (window.ethereum) {
-      webProvider = window.ethereum; //브라우저에 메타마스크 지갑이 있을 경우
+      webProvider = window.ethereum; //최신 dapp 브라우저를 사용하는 경우..
     } else if (window.web3) {
+      //레거시 dapp 브라우저를 사용하는 경우
       webProvider = window.web3.currentProvider;
     } else if (typeof window.web3 !== "undefined") {
       webProvider =
@@ -77,12 +104,10 @@ const App = () => {
       // 4
       console.log("No web3 instance injected, using local web3.");
     }
-
-    setWeb3(new Web3(webProvider));
-  };
-
-  const switchIsLogged = () => {
-    setIsLogged(!isLogged);
+    const web3 = new Web3(webProvider);
+    const address = await web3.eth.getAccounts();
+    setAddress(address);
+    setWeb3(web3);
   };
 
   return (
@@ -90,8 +115,9 @@ const App = () => {
       <Header
         web3={web3}
         isLogged={isLogged}
-        setIsLogged={setIsLogged}
+        setAddress={setAddress}
         requestAccessToken={requestAccessToken}
+        handleLogout={handleLogout}
       />
       <Routes>
         <Route path="/" element={<Main />} />
