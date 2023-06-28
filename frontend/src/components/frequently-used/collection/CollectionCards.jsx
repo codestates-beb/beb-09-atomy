@@ -27,5 +27,4 @@ const CollectionCards = ({collections}) =>{
   );
 }
 
-
 export default CollectionCards;
