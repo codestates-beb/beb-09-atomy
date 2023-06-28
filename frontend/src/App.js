@@ -16,6 +16,7 @@ const App = () => {
   const [isLogged, setIsLogged] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [address, setAddress] = useState("");
+  const [collections, setCollections] = useState([]);
 
   useEffect(() => {
     //첫 랜더링시 web3 인스턴스 초기화.
@@ -27,6 +28,28 @@ const App = () => {
       refreshAccessToken(address);
     }
   }, [address]);
+
+  useEffect(() => {
+    requestCollectionInfomation(10);
+  }, []);
+
+  const requestCollectionInfomation = async (size) => {
+    try {
+      const response = await axios.get(`/api/v1/collections?size=${size}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setCollections(response.data);
+      } else {
+        throw new Error("err occurred to get collection infomation");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const refreshAccessToken = async (address) => {
     try {
@@ -120,12 +143,19 @@ const App = () => {
         handleLogout={handleLogout}
       />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main collections={collections} />} />
         {/* <Route path="/search/:keyword" element={<Search />} /> */}
         <Route path="/collection/:id" element={<CollectionInfo />} />
         <Route path="/nft/:id" element={<NFTInfo />} />
         <Route path="/test" element={<Test />} />
       </Routes>
+      <button
+        onClick={() => {
+          console.log(collections);
+        }}
+      >
+        der
+      </button>
       <Footer />
     </Router>
   );

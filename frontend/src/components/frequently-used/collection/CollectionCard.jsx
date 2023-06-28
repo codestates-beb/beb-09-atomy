@@ -56,10 +56,10 @@ const CollectionCard = ({image, title, owner, NFTQuantity, volume, path}) => {
     <Card onClick={()=>{nav(path)}}> 
         <img src={image} width="100%" height="60%" alt="" />
         <Title>{title}</Title>
-        <Owner>{owner}</Owner>
+        <Owner>by {owner}</Owner>
         <SubInfo>
-            <div>{NFTQuantity}</div> 
-            <div>{volume}</div> 
+            <div>{parseInt(NFTQuantity).length > 0 ? `NFT 개수 : ${NFTQuantity}`:""}</div> 
+            <div>{parseInt(volume).toFixed(2)} ETH</div> 
         </SubInfo>
     </Card>
   );

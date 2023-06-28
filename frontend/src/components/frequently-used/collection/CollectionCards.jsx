@@ -16,25 +16,15 @@ export const Cards = styled.div`
 
 
 
-const CollectionCards = ({image, title, owner, NFTQuantity, volume, path}) =>{
-
+const CollectionCards = ({collections}) =>{
+    
   return(
     <Cards>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/collection/airpot"}/>
-        <CollectionCard image={"https://source.unsplash.com/random/400×400"} title={"title"} owner={"by owner"} NFTQuantity={"NFT quantity"} volume={"NFT volume"} path={"/nft/:id"}/>
+        {collections.map((collection)=>(
+            <CollectionCard image={collection.image_url} title={collection.name} owner={collection.owner} NFTQuantity={collections.total_supply} volume={collection.total_volume} path={"/collection/airpot"}/>
+        ))}
     </Cards>
   );
 }
-
 
 export default CollectionCards;

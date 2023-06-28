@@ -6,10 +6,10 @@ const MainCompo = styled.div`
     margin:100px;
 `;
 
-const MainCompnent = () => {
+const MainCompnent = ({collections}) => {
   return (
     <MainCompo>
-        <CollectionCardContainer/>
+        <CollectionCardContainer collections={collections}/>
     </MainCompo>
   )
 }
