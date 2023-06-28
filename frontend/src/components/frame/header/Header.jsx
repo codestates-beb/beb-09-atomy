@@ -20,12 +20,12 @@ const HeaderDiv = styled.div`
     
 `
 
-const Header = ({web3, isLogged, setIsLogged, requestAccessToken}) => {
+const Header = ({web3, isLogged, handleLogout, requestAccessToken, setAddress}) => {
     return (
         <HeaderDiv>
             <Logo/>
             <SearchBar/>
-            {isLogged?<Profile web3={web3} setIsLogged={setIsLogged}/>:<WalletConnection web3={web3} setIsLogged={setIsLogged} requestAccessToken={requestAccessToken}/>}
+            {isLogged?<Profile web3={web3} handleLogout={handleLogout}/>:<WalletConnection web3={web3} requestAccessToken={requestAccessToken} setAddress={setAddress}/>}
         </HeaderDiv>
     );
 };

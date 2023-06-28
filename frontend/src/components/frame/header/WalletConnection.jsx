@@ -17,20 +17,20 @@ const StyledButton = styled.button`
 `;
 
 
-const WalletConnection = ({web3, setIsLogged, requestAccessToken}) => {
+const WalletConnection = ({web3, requestAccessToken, setAddress}) => {
     
-    const handleWalletConnect = () => { // 로그인 시도
-        web3.eth.requestAccounts()
-        .then((accounts)=>{
-            setIsLogged(true);
-            const account = accounts[0]
-            requestAccessToken(account);
-
-        })
-        .catch((error)=>{
-            console.error("지갑 연동 오류", error);
-        })
-        
+    const handleWalletConnect = async () => { // 로그인 시도
+        try{    
+            const address = await web3.eth.requestAccounts();
+            if(typeof address[0] !== "undefined") {
+                setAddress(address);
+                requestAccessToken(address);
+            }
+            else new Error("not be able to get address");
+        }
+        catch (err){
+            console.log(err);
+        }      
     }
   return (
     <StyledButton>
