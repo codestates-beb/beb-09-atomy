@@ -148,8 +148,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main collections={collections} />} />
         {/* <Route path="/search/:keyword" element={<Search />} /> */}
-        <Route path="/collection/:id" element={<CollectionInfo />} />
-        <Route path="/nft/:id" element={<NFTInfo />} />
+        <Route path="/collection/:slug" element={<CollectionInfo />} />
+        <Route path="/nft/:slug/:token_id" element={<NFTInfo />} />
         <Route path="/test" element={<Test />} />
       </Routes>
       <Footer />
