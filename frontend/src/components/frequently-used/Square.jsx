@@ -4,24 +4,25 @@ import styled from 'styled-components';
 
 
 const SquareDiv = styled.div`
-  width: 120px;
-  height: 150px;
+  width: 200px;
+  height: 190px;
+  margin-top: 30px;
+  margin-bottom: -100px;
   background-color: #fff;
   border: 2px solid #0f0f0f;
-  margin-right: 23px;
-  margin-bottom: 20px;
+  margin-right: 52px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 15px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease; 
 
   span {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     line-height: 2.0;
     color: #000;

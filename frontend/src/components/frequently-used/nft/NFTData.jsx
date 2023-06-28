@@ -1,64 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { IoMdCart, IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
-
-const AccordionItem = ({ title, isOpen, onClick }) => (
-  <Accordion onClick={onClick}>
-    <AccordionTitle>
-      <span>{title}</span>
-      {isOpen ? <IoIosArrowUp size={18} /> : <IoIosArrowDown size={18} />}
-    </AccordionTitle>
-    <AccordionContent isOpen={isOpen}>
-      {isOpen && (
-        <>
-          <IoIosArrowUp size={18} />
-          {title}
-          <br />
-          Accordion Content
-        </>
-      )}
-    </AccordionContent>
-  </Accordion>
-);
-
-const Accordion = styled.div`
-  width: 102%;
-  height: auto;
-  background-color: #fff;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  padding: 13px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #616161;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-`;
-
-const AccordionTitle = styled.h3`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 18px;
-  margin-bottom: 5px;
-  cursor: pointer;
-  text-align: left;
-
-  svg {
-    margin-left: auto;
-  }
-`;
-
-const AccordionContent = styled.div`
-  font-size: 16px;
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f5f5f5;
-  text-align: center;
-  transition: max-height 0.3s ease;
-  overflow: hidden;
-`;
+import AccordionItem from '../AccordionItem';
+import { IoMdCart } from 'react-icons/io';
 
 const AccordionCard = styled.div`
   display: flex;
@@ -171,6 +114,12 @@ const LongAccordionContent = styled.div`
 `;
 
 const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
+  const accordionItems = [
+    { title: 'Price History', index: 0 },
+    { title: 'Listings', index: 1 },
+    { title: 'Offers', index: 2 },
+  ];
+
   return (
     <AccordionCard>
       <NFTInfoContainer>
@@ -191,34 +140,14 @@ const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
         </ButtonContainer>
       </NFTInfoContainer>
       <AccordionContainer>
-        {/* Todo: component화 하기 */}
-        <AccordionItem
-          title="Price History"
-          isOpen={accordionState[0]}
-          onClick={() => handleAccordionToggle(0)}
-        />
-        {/* <AccordionItem
-          title="Listings"
-          isOpen={accordionState[1]}
-          onClick={() => handleAccordionToggle(1)}
-        />
-        <AccordionItem
-          title="Offers"
-          isOpen={accordionState[2]}
-          onClick={() => handleAccordionToggle(2)}
-        /> */}
-        <LongAccordionContent>
-        <AccordionItem
-          title="Long Accordion 1"
-          isOpen={accordionState[3]}
-          onClick={() => handleAccordionToggle(3)}
-        />
-        <AccordionItem
-          title="Long Accordion 2"
-          isOpen={accordionState[4]}
-          onClick={() => handleAccordionToggle(4)}
-        />
-        </LongAccordionContent>
+        {accordionItems.map((item) => (
+          <AccordionItem
+            key={item.title}
+            title={item.title}
+            isOpen={accordionState[item.index]}
+            onClick={() => handleAccordionToggle(item.index)}
+          />
+        ))}
       </AccordionContainer>
     </AccordionCard>
   );
