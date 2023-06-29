@@ -1,9 +1,53 @@
-import React, { useState } from 'react';
-import styled, { css } from 'styled-components';
-import { FaDiscord, FaTelegram, FaGithub, FaAngleDown, FaAngleUp } from 'react-icons/fa';
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
+import {
+  FaDiscord,
+  FaTelegram,
+  FaGithub,
+  FaAngleDown,
+  FaAngleUp,
+} from "react-icons/fa";
 
-const DescriptionComponent = ({ titleText, descriptionText }) => {
+const DescriptionComponent = ({
+  name,
+  chain_identifier,
+  created_date,
+  description,
+}) => {
   const [expanded, setExpanded] = useState(false);
+
+  const getMonth = () => {
+    let month = created_date.slice(5, 7).replace(/^0+/, "");
+    switch (month) {
+      case "1":
+        return "JAN";
+      case "2":
+        return "FEB";
+      case "3":
+        return "MAR";
+      case "4":
+        return "APR";
+      case "5":
+        return "MAY";
+      case "6":
+        return "JUN";
+      case "7":
+        return "JUL";
+      case "8":
+        return "AUG";
+      case "9":
+        return "SEP";
+      case "10":
+        return "OCT";
+      case "11":
+        return "NOV";
+      case "12":
+        return "DEC";
+      default:
+        return "JAN";
+    }
+  };
+  const day = created_date.slice(8, 10).replace(/^0+/, "");
 
   const handleToggle = () => {
     setExpanded(!expanded);
@@ -11,8 +55,7 @@ const DescriptionComponent = ({ titleText, descriptionText }) => {
 
   return (
     <DescriptionContainer>
-      <Title text={titleText}>
-        BEANZ Official
+      <Title text={name}>
         <ResponsiveSocialIcons>
           <a href="https://discord.com/your-discord-url">
             <FaDiscord />
@@ -28,20 +71,17 @@ const DescriptionComponent = ({ titleText, descriptionText }) => {
       <Text1>
         <TextContainer1>
           <TextSpan>Created</TextSpan>
-          <BoldText>Mar 2022</BoldText>
+          <BoldText>{`${getMonth()} ${day}`}</BoldText>
         </TextContainer1>
         <TextContainer2>
           <TextSpan>Chain</TextSpan>
-          <BoldText>ETH</BoldText>
+          <BoldText>
+            {chain_identifier === "ethereum" ? "ETH" : chain_identifier}
+          </BoldText>
         </TextContainer2>
       </Text1>
       <AccordionContainer>
-        <DescriptionText expanded={expanded}>
-        BEANZ are a small species that sprouts from the dirt in the garden. 
-        They make for a great sidekick to an Azuki, although some like to kick it alone. 
-        They're earnestly driven by the desire to help. 
-          {descriptionText}
-        </DescriptionText>
+        <DescriptionText expanded={expanded}>{description}</DescriptionText>
         <ToggleIconButton onClick={handleToggle}>
           {expanded ? <FaAngleUp /> : <FaAngleDown />}
         </ToggleIconButton>
@@ -168,14 +208,14 @@ const ToggleIconButton = styled.button`
   color: #000;
   cursor: pointer;
   margin-left: 320px;
-  position: relative; 
-  top: -35px; 
+  position: relative;
+  top: -35px;
 `;
 
 const breakpoints = {
-  small: '600px',
-  medium: '960px',
-  large: '1280px',
+  small: "600px",
+  medium: "960px",
+  large: "1280px",
 };
 
 const media = Object.keys(breakpoints).reduce((acc, label) => {
