@@ -1,14 +1,10 @@
 import React from "react";
-import NFTMainPageComponent from "../components/frequently-used/nft/NFTMainPageComponent";
-// import NFTCardList from "../components/frequently-used/nft/NFTCardList";
-// import NFTPrice from "../components/frequently-used/nft/NFTPrice";
+import NFTMainPageComponent from '../components/frame/main/nft-page-main-component/NFTMainPageComponent';
 
 const NFTInfo = () => {
   return (
     <>
       <NFTMainPageComponent />
-      {/* <NFTCardList /> */}
-      {/* <NFTPrice /> */}
     </>
   );
 };

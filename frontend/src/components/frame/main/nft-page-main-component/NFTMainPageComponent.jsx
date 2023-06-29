@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import NFTData from './NFTData';
 import NFTPrice from './NFTPrice';
+import Square from '../../../frequently-used/Square';
+import Thumbnail from '../../../frequently-used/Thumbnail';
+import AccordionItem from '../../../frequently-used/AccordionItem';
 
-import Square from '../Square';
-import Thumbnail from '../Thumbnail';
 
 const Container1 = styled.div`
   display: flex;

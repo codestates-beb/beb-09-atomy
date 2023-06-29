@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AccordionItem from '../AccordionItem';
+import AccordionItem from '../../../frequently-used/AccordionItem';
 import { IoMdCart } from 'react-icons/io';
 
 const AccordionCard = styled.div`
