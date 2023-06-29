@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Web3 from "web3";
 import axios from "axios";
 
@@ -16,6 +16,8 @@ const App = () => {
   const [accessToken, setAccessToken] = useState("");
   const [address, setAddress] = useState("");
   const [refreshInterval, setRefreshInterval] = useState(null);
+
+  const navigate = useNavigate();
 
   const toggleRefresh = useCallback(
     async (flag) => {
@@ -53,11 +55,10 @@ const App = () => {
     const addresses = await web3.eth.requestAccounts(); // 지갑 연결
     if (!addresses) {
       console.log("connecting wallet failed");
-    } else {
-      await setAddress(addresses[0]);
-      console.log(address);
-      requestAccessToken();
+      return;
     }
+    setAddress(addresses[0]);
+    requestAccessToken();
   };
 
   const requestAccessToken = async () => {
@@ -104,6 +105,7 @@ const App = () => {
       setIsLoggedIn(false);
       setAccessToken("");
       toggleRefresh(false);
+      navigate("/");
     }
   };
 
@@ -162,9 +164,10 @@ const App = () => {
   }, [accessToken, toggleRefresh]);
 
   return (
-    <Router>
+    <>
       <Header
         web3={web3}
+        address={address}
         isLoggedIn={isLoggedIn}
         connectWallet={connectWallet}
         handleLogout={handleLogout}
@@ -175,7 +178,7 @@ const App = () => {
         <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />
       </Routes>
       <Footer />
-    </Router>
+    </>
   );
 };
 

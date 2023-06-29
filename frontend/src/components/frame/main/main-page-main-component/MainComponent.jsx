@@ -3,7 +3,7 @@ import CollectionCardContainer from "./CollectionCardContainer";
 import styled from "styled-components";
 
 const MainCompoDiv = styled.div`
-  margin: 100px;
+  margin-top: 120px;
 `;
 
 const MainComponent = ({ collections }) => {

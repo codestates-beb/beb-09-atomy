@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import NFTData from './NFTData';
-import NFTPrice from './NFTPrice';
-import Square from '../../../frequently-used/Square';
-import Thumbnail from '../../../frequently-used/Thumbnail';
+import NFTData from "./NFTData";
+import Square from "../../../frequently-used/Square";
+import Thumbnail from "../../../frequently-used/Thumbnail";
 
 const Container1 = styled.div`
   display: flex;
@@ -22,12 +21,12 @@ const Container2 = styled.div`
 `;
 
 const SquareContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  margin-top: 40px;
-  margin-left: 170px;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 80%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding-left: 3%;
 `;
 
 const PopupOverlay = styled.div`
@@ -57,7 +56,13 @@ const ImagePopup = styled.img`
 `;
 
 const NFTMainPageComponent = ({ web3, address, collections, nft }) => {
-  const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
+  const [accordionState, setAccordionState] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleAccordionToggle = (index) => {
@@ -79,7 +84,13 @@ const NFTMainPageComponent = ({ web3, address, collections, nft }) => {
   return (
     <Container1>
       <Container2>
-        <Thumbnail image={nft.image_url} title={nft.name} handleImageClick={handleImageClick} width="300px" height="600px" />
+        <Thumbnail
+          image={nft.image_url}
+          title={nft.name}
+          handleImageClick={handleImageClick}
+          width="300px"
+          height="600px"
+        />
         <NFTData
           accordionState={accordionState}
           handleAccordionToggle={handleAccordionToggle}
@@ -89,13 +100,11 @@ const NFTMainPageComponent = ({ web3, address, collections, nft }) => {
         />
       </Container2>
       <SquareContainer>
+        {nft.traits?.map((trait) => (
+          <Square text1={trait.trait_type} text2={trait.value} />
+        ))}
       </SquareContainer>
-      <Container2>
-        <NFTPrice price={nft.price} />
-      </Container2>
-      <div style={{display: "grid"}}> 
-        {nft.traits?.slice(0,4).map((trait)=><Square text1={trait.trait_type} text2={trait.value}/> )}
-      </div>
+
       {isPopupOpen && (
         <PopupOverlay onClick={handleClosePopup}>
           <PopupContent>

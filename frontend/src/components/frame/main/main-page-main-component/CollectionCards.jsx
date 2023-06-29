@@ -4,9 +4,7 @@ import styled from "styled-components";
 import CollectionCard from "../../../frequently-used/collection/CollectionCard";
 
 export const CardsDiv = styled.div`
-  /* margin-top: 40px;
-  margin-left: 100px; */
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: grid;
   grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
   row-gap: 40px;
