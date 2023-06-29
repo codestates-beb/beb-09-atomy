@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import NFTData from './NFTData';
 import NFTPrice from './NFTPrice';
+import Square from '../../../frequently-used/Square';
+import Thumbnail from '../../../frequently-used/Thumbnail';
 
-import Square from '../Square';
-import Thumbnail from '../Thumbnail';
 
 const Container1 = styled.div`
   display: flex;
@@ -25,7 +26,7 @@ const SquareContainer = styled.div`
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-  margin-top: -40px;
+  margin-top: 40px;
   margin-left: 170px;
   width: 100%;
 `;
@@ -56,7 +57,7 @@ const ImagePopup = styled.img`
   object-fit: contain;
 `;
 
-const NFTMainPageComponent = () => {
+const NFTMainPageComponent = ({web3, address}) => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State for the image popup
 
@@ -88,6 +89,8 @@ const NFTMainPageComponent = () => {
           title={nft.title}
           accordionState={accordionState}
           handleAccordionToggle={handleAccordionToggle}
+          web3={web3}
+          address={address}
         />
       </Container2>
       <SquareContainer>
@@ -96,7 +99,6 @@ const NFTMainPageComponent = () => {
         <Square text1="Traits part1" text2="Traits 2%"/>
         <Square text1="Traits part1" text2="Traits 2%"/>
         <Square text1="Traits part1" text2="Traits 2%"/>
-  
       </SquareContainer>
       <Container2>
         <NFTPrice price={nft.price} />

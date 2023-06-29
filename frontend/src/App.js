@@ -116,6 +116,8 @@ const App = () => {
       console.log("No web3 instance injected, using local web3.");
     }
     const web3 = new Web3(webProvider);
+    const address = await web3.eth.getAccounts();
+    setAddress(address[0]);
     setWeb3(web3);
   };
 
@@ -130,7 +132,11 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/collection/:slug" element={<CollectionInfo />} />
-        <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />
+        <Route
+          path="/collection/:slug/nft/:token_id"
+          element={<NFTInfo web3={web3} address={address} />}
+        />
+        {/* <Route path="/test" element={<Test />} /> */}
       </Routes>
       <Footer />
     </Router>

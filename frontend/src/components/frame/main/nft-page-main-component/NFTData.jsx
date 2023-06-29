@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AccordionItem from '../AccordionItem';
+import AccordionItem from '../../../frequently-used/AccordionItem';
 import { IoMdCart } from 'react-icons/io';
 
 const AccordionCard = styled.div`
@@ -113,12 +113,34 @@ const LongAccordionContent = styled.div`
   margin-right: 36px;
 `;
 
-const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
+const NFTData = ({ title, accordionState, handleAccordionToggle, web3, address }) => {
   const accordionItems = [
     { title: 'Price History', index: 0 },
     { title: 'Listings', index: 1 },
     { title: 'Offers', index: 2 },
   ];
+
+const sendTransaction = async() => {
+    try{
+        if(typeof web3 !=="undefined") {
+        const receipt = await web3.eth.sendTransaction({
+            from: address,
+            to: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
+            value: '1000000000000000'
+            })
+        console.log(receipt);
+        }
+        else {
+            throw Error("web3 doesn't exist")
+        }
+    }  catch (err){
+        console.log(err);
+    }
+    
+        
+    
+    
+}
 
   return (
     <AccordionCard>
@@ -133,7 +155,7 @@ const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
           </TextWrapper>
         </NFTTitleContainer>
         <ButtonContainer>
-          <BuyButton isPrimary>BUY BUTTON</BuyButton>
+          <BuyButton onClick={sendTransaction} isPrimary>BUY BUTTON</BuyButton>
           <CartButton>
             <CartIcon size={28} />
           </CartButton>
@@ -153,7 +175,7 @@ const NFTData = ({ title, accordionState, handleAccordionToggle }) => {
   );
 };
 
-const MyComponent = () => {
+const MyComponent = ({web3, address}) => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
 
   const handleAccordionToggle = (index) => {
@@ -164,7 +186,7 @@ const MyComponent = () => {
 
   return (
     <div>
-      <NFTData title="My NFT" accordionState={accordionState} handleAccordionToggle={handleAccordionToggle} />
+      <NFTData title="My NFT" accordionState={accordionState} handleAccordionToggle={handleAccordionToggle} web3={web3} address={address}/>
     </div>
   );
 };
