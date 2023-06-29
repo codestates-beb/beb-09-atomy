@@ -92,7 +92,7 @@ class userController {
         throw new Error("Access token not found");
       }
 
-      const valid = this.userService.validate(accessToken);
+      const valid = await this.userService.validate(accessToken);
       if (!valid) {
         throw new Error("Invalid access token");
       }
