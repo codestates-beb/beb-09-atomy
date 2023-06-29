@@ -17,7 +17,7 @@ const NFTCards = ({NFTs}) =>{
     
   return(
     <NFTCardsDiv>
-        {NFTs.map((NFT)=>(
+        {NFTs?.map((NFT)=>(
             <NFTCard image={NFT.image_url} title={NFT.name} NFTQuantity={NFT.total_supply} volume={NFT.total_volume} path={`/nft?id=${NFT.name}`}/>
         ))}
     </NFTCardsDiv>
