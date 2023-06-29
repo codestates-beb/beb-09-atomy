@@ -15,6 +15,8 @@
 
 ## 지갑 연결
 ![connect-wallet2](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/1e28fa99-f8e2-4235-bdab-8f35501e3132)
+## 로그 아웃
+![log-out](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/09b2aa7d-a799-47a8-afa5-944031f6b4c9)
 
 ## 컬렉션 페이지
 ![collection-page](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/5ad1ddd6-9afb-4956-8a9d-5cc24a1755ba)
