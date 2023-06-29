@@ -15,7 +15,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [address, setAddress] = useState("");
-  const [collections, setCollections] = useState([]);
 
   useEffect(() => {
     //첫 랜더링시 web3 인스턴스 초기화.
@@ -51,7 +50,7 @@ const App = () => {
       throw new Error(err);
     }
   };
-  const requestAccessToken = async (address) => {
+  const requestAccessToken = async () => {
     //로그인 진행 시 address를 기반으로 서버에 JWT access Token을 받아온다.
     try {
       if (!web3) {
@@ -87,6 +86,9 @@ const App = () => {
   };
 
   const handleLogout = async () => {
+    if (!isLoggedIn) {
+      return;
+    }
     const response = await axios.post("/api/v1/user/logout", {
       withCredentials: true,
     });
@@ -126,12 +128,7 @@ const App = () => {
         handleLogout={handleLogout}
       />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Main collections={collections} setCollections={setCollections} />
-          }
-        />
+        <Route path="/" element={<Main />} />
         <Route path="/collection/:slug" element={<CollectionInfo />} />
         <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />
       </Routes>
