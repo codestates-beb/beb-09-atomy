@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LogoContainer = styled.div`
+const LogoContainer = styled.a`
   display: flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
 `;
 
 const LogoImage = styled.img`
@@ -35,7 +37,7 @@ const LogoName = styled.h1`
 
 const Logo = ({ white }) => {
   return (
-    <LogoContainer>
+    <LogoContainer href="http://localhost:3000/">
       <LogoImage src="logo.png" alt="Logo" white={white} />
       <LogoName white={white}>Atomy</LogoName>
     </LogoContainer>
