@@ -1,9 +1,6 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
-
-const MainContent = styled.main`
-  flex-grow: 1;
-`;
+import styled from 'styled-components';
+import Logo from '../../frequently-used/Logo';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -21,24 +18,6 @@ const LogoAndLinksContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Logo = styled.img`
-  height: 20px;
-  margin-top: 10px;
-`;
-
-const LogoName = styled.h1`
-  color: #fff;
-  font-size: 20px;
-  display: inline-block;
-  margin-top: 20px; 
 `;
 
 const LogoDescription = styled.p`
@@ -93,10 +72,7 @@ const CountryText = styled.span`
 const Footer = () => (
   <FooterContainer>
     <LogoAndLinksContainer>
-      <LogoContainer>
-        <Logo src="logo.png" alt="Logo" />
-        <LogoName>Atomy</LogoName>
-      </LogoContainer>
+      <Logo white />
       <FooterLinks>
         <FooterLink href="https://www.instagram.com/"><LinkLogo src="sns1.png" alt="" /></FooterLink>
         <FooterLink href="https://www.youtube.com/"><LinkLogo src="sns2.png" alt="" /></FooterLink>

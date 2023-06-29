@@ -3,7 +3,8 @@ import SearchBar from "./SearchBar";
 import styled from "styled-components";
 import Profile from "./Profile";
 import WalletConnection from "./WalletConnection";
-import Logo from "./Logo";
+import Logo from '../../frequently-used/Logo';
+
 const HeaderDiv = styled.div`
   background-color: #fafafa;
   position: fixed;
@@ -17,7 +18,7 @@ const HeaderDiv = styled.div`
   justify-content: space-between;
 `;
 
-const Header = ({ web3, isLoggedIn, handleLogout, connectWallet }) => {
+const Header = ({ web3, isLoggedIn, handleLogout, requestAccessToken }) => {
   return (
     <HeaderDiv>
       <Logo />
@@ -25,7 +26,7 @@ const Header = ({ web3, isLoggedIn, handleLogout, connectWallet }) => {
       {isLoggedIn ? (
         <Profile web3={web3} handleLogout={handleLogout} />
       ) : (
-        <WalletConnection connectWallet={connectWallet} />
+        <WalletConnection requestAccessToken={requestAccessToken} />
       )}
     </HeaderDiv>
   );
