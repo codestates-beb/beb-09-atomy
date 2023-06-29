@@ -55,6 +55,7 @@ const App = () => {
       console.log("connecting wallet failed");
     } else {
       await setAddress(addresses[0]);
+      console.log(address);
       requestAccessToken();
     }
   };
@@ -117,8 +118,7 @@ const App = () => {
         //레거시 dapp 브라우저를 사용하는 경우
         webProvider = window.web3.currentProvider;
       } else if (typeof window.web3 !== "undefined") {
-        webProvider =
-          "https://goerli.infura.io/v3/7bcccb589f144d16a1b7871c29fdc6a4";
+        webProvider = process.env.RPC_URL;
       } else {
         throw new Error("No web3 instance injected, using local web3.");
       }
