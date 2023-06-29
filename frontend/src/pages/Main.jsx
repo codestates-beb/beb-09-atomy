@@ -1,18 +1,16 @@
-import React, { useEffect } from "react";
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+import MainComponent from "../components/frame/main/main-page-main-component/MainComponent";
 
-import MainCompnent from "../components/frame/main/main-page-main-component/MainCompnent";
-
-
-const Main = ({collections, setCollections}) => {
-    useEffect(() => {
+const Main = () => {
+  const [collections, setCollections] = useState([]);
+  useEffect(() => {
     //main페이지 collections api 호출
     requestCollectionsAPI(12);
   }, []);
 
   const requestCollectionsAPI = async (size) => {
-    //
     try {
       const response = await axios.get(`/api/v1/collections?size=${size}`, {
         headers: {
@@ -23,15 +21,13 @@ const Main = ({collections, setCollections}) => {
       if (response.status === 200) {
         setCollections(response.data);
       } else {
-        throw new Error("err occurred to get collection infomation");
+        throw new Error("err occurred to get collection information");
       }
     } catch (err) {
       console.log(err);
     }
   };
-  return (
-    <MainCompnent collections={collections}/>
-  );
+  return <MainComponent collections={collections} />;
 };
 
 export default Main;
