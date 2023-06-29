@@ -108,7 +108,7 @@ const App = () => {
     }
     const web3 = new Web3(webProvider);
     const address = await web3.eth.getAccounts();
-    setAddress(address);
+    setAddress(address[0]);
     setWeb3(web3);
   };
 
@@ -130,7 +130,10 @@ const App = () => {
         />
         {/* <Route path="/search/:keyword" element={<Search />} /> */}
         <Route path="/collection/:slug" element={<CollectionInfo />} />
-        <Route path="/collection/:slug/nft/:token_id" element={<NFTInfo />} />
+        <Route
+          path="/collection/:slug/nft/:token_id"
+          element={<NFTInfo web3={web3} address={address} />}
+        />
         {/* <Route path="/test" element={<Test />} /> */}
       </Routes>
       <Footer />
