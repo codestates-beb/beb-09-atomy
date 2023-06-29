@@ -15,10 +15,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const WalletConnection = ({ requestAccessToken }) => {
+const WalletConnection = ({ connectWallet }) => {
   return (
     <StyledButton>
-      <h2 onClick={requestAccessToken}>Connect Wallet</h2>
+      <h2 onClick={connectWallet}>Connect Wallet</h2>
     </StyledButton>
   );
 };

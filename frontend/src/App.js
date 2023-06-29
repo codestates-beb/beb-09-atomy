@@ -49,6 +49,16 @@ const App = () => {
     [refreshInterval]
   );
 
+  const connectWallet = async () => {
+    const addresses = await web3.eth.requestAccounts(); // 지갑 연결
+    if (!addresses) {
+      console.log("connecting wallet failed");
+    } else {
+      await setAddress(addresses[0]);
+      requestAccessToken();
+    }
+  };
+
   const requestAccessToken = async () => {
     //로그인 진행 시 address를 기반으로 서버에 JWT access Token을 받아온다.
     try {
@@ -114,10 +124,9 @@ const App = () => {
       }
       const web3 = new Web3(webProvider);
       const addresses = await web3.eth.getAccounts();
-      if (!addresses.length) {
-        throw new Error("MetaMask is locked");
+      if (addresses) {
+        setAddress(addresses[0]);
       }
-      setAddress(addresses[0]);
       setWeb3(web3);
     } catch (err) {
       console.log(err);
@@ -157,7 +166,7 @@ const App = () => {
       <Header
         web3={web3}
         isLoggedIn={isLoggedIn}
-        requestAccessToken={requestAccessToken}
+        connectWallet={connectWallet}
         handleLogout={handleLogout}
       />
       <Routes>
