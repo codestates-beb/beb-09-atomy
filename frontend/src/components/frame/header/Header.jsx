@@ -5,33 +5,30 @@ import Profile from "./Profile";
 import WalletConnection from "./WalletConnection";
 import Logo from "./Logo";
 const HeaderDiv = styled.div`
+  background-color: #fafafa;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
-    background-color: #fafafa;
-    position:fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-
-    
-`
-
-const Header = ({web3, isLogged, handleLogout, requestAccessToken, setAddress}) => {
-    return (
-        <HeaderDiv>
-            <Logo/>
-            <SearchBar/>
-            {isLogged?<Profile web3={web3} handleLogout={handleLogout}/>:<WalletConnection web3={web3} requestAccessToken={requestAccessToken} setAddress={setAddress}/>}
-        </HeaderDiv>
-    );
+const Header = ({ web3, isLoggedIn, handleLogout, requestAccessToken }) => {
+  return (
+    <HeaderDiv>
+      <Logo />
+      <SearchBar />
+      {isLoggedIn ? (
+        <Profile web3={web3} handleLogout={handleLogout} />
+      ) : (
+        <WalletConnection requestAccessToken={requestAccessToken} />
+      )}
+    </HeaderDiv>
+  );
 };
-
-
-
-
 
 export default Header;
