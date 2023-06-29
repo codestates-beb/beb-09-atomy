@@ -13,12 +13,12 @@ export const NFTCardsDiv = styled.div`
 
 
 
-const NFTCards = ({NFTs}) =>{
-    
+const NFTCards = ({nfts, slug}) =>{
+
   return(
     <NFTCardsDiv>
-        {NFTs?.map((NFT)=>(
-            <NFTCard image={NFT.image_url} title={NFT.name} NFTQuantity={NFT.total_supply} volume={NFT.total_volume} path={`/nft?id=${NFT.name}`}/>
+        {nfts?.map((nft)=>(
+            <NFTCard image={nft.image_url} name={nft.name} path={`/collection/${slug}/nft/${nft.token_id}`}/>
         ))}
     </NFTCardsDiv>
   );

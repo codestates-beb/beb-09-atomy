@@ -1,30 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ImageBanner = () => {
+const ImageBanner = ({banner_image_url, image_url}) => {
   return (
-    <ImageContainer>
-      <ResponsiveImage src="/ImageBanner.png" alt="Image Banner" />
-      <ProfileImage src="/ImageBannerProfile.png" alt="Profile Image" title="Profile Image" />
-    </ImageContainer>
+    <BannerDiv>
+        <ImageContainer>
+            <ResponsiveImage src={banner_image_url} alt="Image Banner" width="100%"/>
+        </ImageContainer>
+        <ProfileImage src={image_url} alt="Profile Image" title="Profile Image" />
+    </BannerDiv>
   );
 };
 
+const BannerDiv = styled.div`
+    height: 500px;
+    overflow: hidden;
+`;
+
 const ImageContainer = styled.div`
   width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column; 
   margin-top: 70px;
-  position: relative;
 `;
 
 const ResponsiveImage = styled.img`
-  max-width: 100%;
-  height: auto;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+
 `;
 
 const ProfileImage = styled.img`
@@ -32,7 +32,7 @@ const ProfileImage = styled.img`
   height: auto;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
   position: absolute;
-  top: 80%;
+  bottom: 30%;
   left: 8%;
   transform: translateY(-50%);
   border-radius: 15px;
