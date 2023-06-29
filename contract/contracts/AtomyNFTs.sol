@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.18;
 
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract AtomyNFTs is ERC721Enumerable, ERC721URIStorage {
+contract AtomyNFTs is ERC721Enumerable, ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -54,7 +55,7 @@ contract AtomyNFTs is ERC721Enumerable, ERC721URIStorage {
     function mintNFT(
         address receipient,
         string memory URI
-    ) public returns (uint256) {
+    ) public onlyOwner returns (uint256) {
         _tokenIds.increment();
 
         uint256 newTokenId = _tokenIds.current();
