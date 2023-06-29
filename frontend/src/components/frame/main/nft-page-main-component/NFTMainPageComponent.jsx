@@ -6,7 +6,6 @@ import NFTPrice from './NFTPrice';
 import Square from '../../../frequently-used/Square';
 import Thumbnail from '../../../frequently-used/Thumbnail';
 
-
 const Container1 = styled.div`
   display: flex;
   flex-direction: column;
@@ -57,9 +56,9 @@ const ImagePopup = styled.img`
   object-fit: contain;
 `;
 
-const NFTMainPageComponent = ({web3, address}) => {
+const NFTMainPageComponent = ({ web3, address, collections, nft }) => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // State for the image popup
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleAccordionToggle = (index) => {
     setAccordionState((prevState) => {
@@ -77,32 +76,26 @@ const NFTMainPageComponent = ({web3, address}) => {
     setIsPopupOpen(false);
   };
 
-  const nft = {
-    image: '/nftcard1.png',
-  };
-
   return (
     <Container1>
       <Container2>
-        <Thumbnail image={nft.image} title={nft.title} handleImageClick={handleImageClick} width="300px" height="600px"/>
+        <Thumbnail image={nft.image_url} title={nft.name} handleImageClick={handleImageClick} width="300px" height="600px" />
         <NFTData
-          title={nft.title}
           accordionState={accordionState}
           handleAccordionToggle={handleAccordionToggle}
           web3={web3}
           address={address}
+          nft={nft}
         />
       </Container2>
       <SquareContainer>
-        <Square text1="Traits part1" text2="Traits 2%"/>
-        <Square text1="Traits part1" text2="Traits 2%"/>
-        <Square text1="Traits part1" text2="Traits 2%"/>
-        <Square text1="Traits part1" text2="Traits 2%"/>
-        <Square text1="Traits part1" text2="Traits 2%"/>
       </SquareContainer>
       <Container2>
         <NFTPrice price={nft.price} />
       </Container2>
+      <div style={{display: "grid"}}> 
+        {nft.traits?.slice(0,4).map((trait)=><Square text1={trait.trait_type} text2={trait.value}/> )}
+      </div>
       {isPopupOpen && (
         <PopupOverlay onClick={handleClosePopup}>
           <PopupContent>

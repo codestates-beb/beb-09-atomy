@@ -113,12 +113,14 @@ const LongAccordionContent = styled.div`
   margin-right: 36px;
 `;
 
-const NFTData = ({ title, accordionState, handleAccordionToggle, web3, address }) => {
+const NFTDatainfo = ({ nft, accordionState, handleAccordionToggle, web3, address }) => {
   const accordionItems = [
     { title: 'Price History', index: 0 },
     { title: 'Listings', index: 1 },
     { title: 'Offers', index: 2 },
   ];
+ 
+ console.log(nft);
 
 const sendTransaction = async() => {
     try{
@@ -146,8 +148,8 @@ const sendTransaction = async() => {
     <AccordionCard>
       <NFTInfoContainer>
         <NFTTitleContainer>
-          <Title size="28px" color="#3086d5">Utility Wen</Title>
-          <Title size="40px" color="#000">{title}</Title>
+          <Title size="28px" color="#3086d5">{nft.collection_info.name}</Title>
+          <Title size="40px" color="#000">{nft.name}</Title>
           <Title size="20px" color="#000">Owned by A78E0C</Title>
           <TextWrapper>
             <CustomText size="30px" color="#000">0.178</CustomText>
@@ -175,7 +177,7 @@ const sendTransaction = async() => {
   );
 };
 
-const MyComponent = ({web3, address}) => {
+const NFTData = ({web3, address, nft}) => {
   const [accordionState, setAccordionState] = useState([false, false, false, false, false]);
 
   const handleAccordionToggle = (index) => {
@@ -186,9 +188,9 @@ const MyComponent = ({web3, address}) => {
 
   return (
     <div>
-      <NFTData title="My NFT" accordionState={accordionState} handleAccordionToggle={handleAccordionToggle} web3={web3} address={address}/>
+      <NFTDatainfo nft={ nft } accordionState={accordionState} handleAccordionToggle={handleAccordionToggle} web3={web3} address={address}/>
     </div>
   );
 };
 
-export default MyComponent;
+export default NFTData;
