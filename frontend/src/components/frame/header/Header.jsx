@@ -18,7 +18,7 @@ const HeaderDiv = styled.div`
   justify-content: space-between;
 `;
 
-const Header = ({ web3, isLoggedIn, handleLogout, requestAccessToken }) => {
+const Header = ({ web3, isLoggedIn, handleLogout, connectWallet}) => {
   return (
     <HeaderDiv>
       <Logo />
@@ -26,7 +26,7 @@ const Header = ({ web3, isLoggedIn, handleLogout, requestAccessToken }) => {
       {isLoggedIn ? (
         <Profile web3={web3} handleLogout={handleLogout} />
       ) : (
-        <WalletConnection requestAccessToken={requestAccessToken} />
+        <WalletConnection connectWallet={connectWallet} />
       )}
     </HeaderDiv>
   );
