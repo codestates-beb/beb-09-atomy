@@ -34,7 +34,7 @@ const SquareDiv = styled.div`
 const Square = ({ text1, text2 }) => {
   return (
     <SquareDiv>
-      <span>{text1}</span>
+      <span style={{ color: "#adb5bd" }}>{text1}</span>
       <span>{text2}</span>
     </SquareDiv>
   );
