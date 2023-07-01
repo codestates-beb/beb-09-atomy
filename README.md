@@ -48,37 +48,34 @@ Metamask
 
 
 ## ✏️서비스 개요
-
-![schedule](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/45dccf1f-7d68-48b7-b3c7-621b3cd2f8e3)
+![schedule](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/7e56e602-a586-42ee-b3b4-84f1ec1b7691)
 
 ## ✏️서비스 흐름
-
-![service-logic2](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/c31505c7-1d66-40b2-a9cd-410ad36fcc65)
+![service-logic2](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/769c1619-8ff8-4889-af0c-8cd3e99d19e2)
 
 ## ✏️기술 아키텍쳐
-
-![system-architecture](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/3d9e66d8-68a8-4285-938e-13be897f155b)
+![system-architecture](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/eec5d107-eecf-44db-a2a4-f64f12998a0e)
 
 ## ✏️ 리엑트 플로우
-![react-flow](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/5d6299ee-2223-4981-b5ac-62b5a666fa4a)
-
+![react-flow](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/991d39fe-b28d-4e7e-9568-1072b52de7a1)
 
 ## ✏️메인페이지
 
-![main-page](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/331b6bdd-0bf3-48ec-be63-eeba1752124d)
-![서버연동전-후](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/d4ac16e4-0ced-40ff-9d21-b63d6c1a13f0)
+![main-page](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/2f263b6f-afc3-4a06-93f2-ed1edeab161a)
+
+![서버연동전-후](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/f5c134d5-2fc6-4a2c-9f7e-1d79e0be2b50)
+
 
 ## ✏️지갑 연결
-
-![connect-wallet2](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/1e28fa99-f8e2-4235-bdab-8f35501e3132)
+![connect-wallet2](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/0efb6a8a-88f3-4ada-a65d-83cc6ad6817d)
 
 ## ✏️로그 아웃
+![log-out](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/13be7a01-afd3-41b4-be2f-22c90a967200)
 
-![log-out](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/09b2aa7d-a799-47a8-afa5-944031f6b4c9)
 
 ## ✏️컬렉션 페이지
+![collection-page](https://github.com/codestates-beb/beb-09-atomy/assets/110643793/24dbd114-00a2-444c-b152-0acbbcfe713d)
 
-![collection-page](https://github.com/codestates-beb/beb-09-first-04/assets/110643793/5ad1ddd6-9afb-4956-8a9d-5cc24a1755ba)
 
 
 ## API endpoint
