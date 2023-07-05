@@ -1,5 +1,5 @@
 # beb-09-first-04
-![atomy_4](https://github.com/codestates-beb/beb-09-atomy/assets/65144253/e9e005ba-f550-4e8e-8a07-71e2a71e69d9)
+![atomy_NFT](https://github.com/codestates-beb/beb-09-atomy/assets/65144253/a1b24f4d-f023-4b92-b7c6-5322bd738a6b)
 
 
 
